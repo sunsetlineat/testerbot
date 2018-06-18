@@ -13,17 +13,40 @@ $content = file_get_contents('php://input'); $events = json_decode($content, tru
 if (!is_null($events['events'])) { 
     // Loop through each event 
     foreach ($events['events'] as $event) { 
-        // Line API send a lot of event type, we interested in message only. 
-        if ($event['type'] == 'message') { switch($event['message']['type']) { 
-                case 'text': // Get replyToken 
-                $replyToken = $event['replyToken']; // Reply message 
+       // Get replyToken 
+        $replyToken = $event['replyToken']; 
+        $ask = $event['message']['text'];
+        
+        if ($event['type'] == 'message') { 
+              
+        switch($event['message']['type']) { 
+            case 'text': 
                 $respMessage = 'Hello, your message is '. $event['message']['text'];
-                $httpClient = new CurlHTTPClient($channel_token); 
-                $bot = new LINEBot($httpClient, array('channelSecret' => $channel_secret)); 
-                $textMessageBuilder = new TextMessageBuilder($respMessage);
-                $response = $bot->replyMessage($replyToken, $textMessageBuilder);
-                break; }
+                break;
+            case 'tel':
+                $respMessage = '11223344';
+            case 'address':
+                $respMessage = 'Mars';
+            case 'boss tel':
+                $respMesage = 'Hihihi';
+            case 'idcard':
+                $respMessage = '1234567789';
+                default:
+                //Reply message
+                $respMessage='What a nice day!';
+                break;
+            }
                                          }
+        else if($event['type']=='follow'){     
+            // Greeting 
+            $respMessage = 'Thanks you. I try to be your best friend.'; 
+            
+        }
+        $httpClient = new CurlHTTPClient($channel_token); 
+        $bot = new LINEBot($httpClient, array('channelSecret' => $channel_secret)); 
+        $textMessageBuilder = new TextMessageBuilder($respMessage);
+        $response = $bot->replyMessage($replyToken, $textMessageBuilder);
     }
+    
 } 
 echo "OK";
