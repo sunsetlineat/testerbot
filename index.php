@@ -22,43 +22,64 @@ if (!is_null($events['events'])) {
         
         if ($event['type'] == 'message') { 
               
-        switch($event['message']['type']) { 
-            case 'text': 
-                $respMessage = 'Hello, your message is '. $event['message']['text'];
-                break;
-            case 'tel':
-                $respMessage = '11223344';
-                break;
-            case 'address':
-                $respMessage = 'Mars';
-                break;
-            case 'boss tel':
-                $respMesage = 'Hihihi';
-                break;
-            case 'idcard':
-                $respMessage = '1234567789';
-                break;
-             case 'image':
-                    $messageID = $event['message']['id'];
-                    // Create image on server.
-                    $fileID = $event['message']['id'];
-                    $response = $bot->getMessageContent($fileID);
-                    $fileName = 'linebot.jpg';
-                    $file = fopen($fileName, 'w');
-                    fwrite($file, $response->getRawBody());
-                    // Reply message
-                    $respMessage = 'Hello, your image ID is '. $messageID;
-                    break;
-                default:
-                //Reply message
-                $respMessage='What a nice day!';
-                break;
-            }
-                                         }
-        else if($event['type']=='follow'){     
-            // Greeting 
-            $respMessage = 'Thanks you. I try to be your best friend.'; 
+//        switch($event['message']['type']) { 
+//            case 'text': 
+//                $respMessage = 'Hello, your message is '. $event['message']['text'];
+//                break;
+//            case 'tel':
+//                $respMessage = '11223344';
+//                break;
+//            case 'address':
+//                $respMessage = 'Mars';
+//                break;
+//            case 'boss tel':
+//                $respMesage = 'Hihihi';
+//                break;
+//            case 'idcard':
+//                $respMessage = '1234567789';
+//                break;
+//             case 'image':
+//                    $messageID = $event['message']['id'];
+//                    // Create image on server.
+//                    $fileID = $event['message']['id'];
+//                    $response = $bot->getMessageContent($fileID);
+//                    $fileName = 'linebot.jpg';
+//                    $file = fopen($fileName, 'w');
+//                    fwrite($file, $response->getRawBody());
+//                    // Reply message
+//                    $respMessage = 'Hello, your image ID is '. $messageID;
+//                    break;
+//                default:
+//                //Reply message
+//                $respMessage='What a nice day!';
+//                break;
+//            }
+//                                         }
+//        else if($event['type']=='follow'){     
+//            // Greeting 
+//            $respMessage = 'Thanks you. I try to be your best friend.'; 
             
+            $respMessage = {  
+ "type": "flex",
+ "altText": "this is a flex message",
+ "contents": {
+   "type": "bubble",
+   "body": {
+     "type": "box",
+     "layout": "vertical",
+     "contents": [
+       {
+         "type": "text",
+         "text": "hello"
+       },
+       {
+         "type": "text",
+         "text": "world"
+       }
+     ]
+   }
+ }
+};
         }
         $httpClient = new CurlHTTPClient($channel_token); 
         $bot = new LINEBot($httpClient, array('channelSecret' => $channel_secret)); 
