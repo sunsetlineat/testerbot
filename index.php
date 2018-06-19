@@ -1,4 +1,6 @@
-<?php require_once('./vendor/autoload.php'); // Namespace 
+<?php 
+
+require_once('./vendor/autoload.php'); // Namespace 
 use \LINE\LINEBot\HTTPClient\CurlHTTPClient; 
 use \LINE\LINEBot; 
 use \LINE\LINEBot\MessageBuilder\TextMessageBuilder; 
@@ -8,7 +10,8 @@ $channel_secret = '47bc90719fa07a6a119bea4d462a29f6';
 
 // Get message from Line API 
 
-$content = file_get_contents('php://input'); $events = json_decode($content, true); 
+$content = file_get_contents('php://input');
+$events = json_decode($content, true); 
 
 if (!is_null($events['events'])) { 
     // Loop through each event 
@@ -25,12 +28,27 @@ if (!is_null($events['events'])) {
                 break;
             case 'tel':
                 $respMessage = '11223344';
+                break;
             case 'address':
                 $respMessage = 'Mars';
+                break;
             case 'boss tel':
                 $respMesage = 'Hihihi';
+                break;
             case 'idcard':
                 $respMessage = '1234567789';
+                break;
+             case 'image':
+                    $messageID = $event['message']['id'];
+                    // Create image on server.
+                    $fileID = $event['message']['id'];
+                    $response = $bot->getMessageContent($fileID);
+                    $fileName = 'linebot.jpg';
+                    $file = fopen($fileName, 'w');
+                    fwrite($file, $response->getRawBody());
+                    // Reply message
+                    $respMessage = 'Hello, your image ID is '. $messageID;
+                    break;
                 default:
                 //Reply message
                 $respMessage='What a nice day!';
