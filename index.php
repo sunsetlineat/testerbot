@@ -7,7 +7,7 @@ use \LINE\LINEBot\MessageBuilder\TextMessageBuilder;
 
 $channel_token = 'elrTlEnZYv9BqQTLFDG+PsaT3VdBjCzs9/nhqkNNGFaHQDveBfVE2xL0ddW+PGl1sK/tCikVIoIq8ZcPaPIkgNIWdRO/QeEEENO0+UzmaKZrcZbCc9DDQ8cyoNuVN3Z0R4ewRaMjlDmMD3rePRDxnQdB04t89/1O/w1cDnyilFU='; 
 
-$api = 'https://api.line.me/v2/bot/message/push';
+$apipush = 'https://api.line.me/v2/bot/message/push';
 $channel_secret = '47bc90719fa07a6a119bea4d462a29f6'; 
 
 $POST_HEADER = array('Content-Type: application/json', 'Authorization: Bearer ' . $ACCESS_TOKEN);
