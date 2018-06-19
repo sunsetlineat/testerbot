@@ -59,7 +59,7 @@ if (!is_null($events['events'])) {
 //            // Greeting 
 //            $respMessage = 'Thanks you. I try to be your best friend.'; 
             
-            $respMessage = {  
+            $respMessage = "{  
  "type": "flex",
  "altText": "this is a flex message",
  "contents": {
@@ -79,7 +79,7 @@ if (!is_null($events['events'])) {
      ]
    }
  }
-};
+}"
         }
         $httpClient = new CurlHTTPClient($channel_token); 
         $bot = new LINEBot($httpClient, array('channelSecret' => $channel_secret)); 
