@@ -10,6 +10,8 @@ $channel_token = 'elrTlEnZYv9BqQTLFDG+PsaT3VdBjCzs9/nhqkNNGFaHQDveBfVE2xL0ddW+PG
 $api = 'https://api.line.me/v2/bot/message/push';
 $channel_secret = '47bc90719fa07a6a119bea4d462a29f6'; 
 
+$POST_HEADER = array('Content-Type: application/json', 'Authorization: Bearer ' . $ACCESS_TOKEN);
+
 // Get message from Line API 
 
 $content = file_get_contents('php://input');
