@@ -8,15 +8,22 @@ use \LINE\LINEBot\MessageBuilder\TextMessageBuilder;
 $channel_token = 'elrTlEnZYv9BqQTLFDG+PsaT3VdBjCzs9/nhqkNNGFaHQDveBfVE2xL0ddW+PGl1sK/tCikVIoIq8ZcPaPIkgNIWdRO/QeEEENO0+UzmaKZrcZbCc9DDQ8cyoNuVN3Z0R4ewRaMjlDmMD3rePRDxnQdB04t89/1O/w1cDnyilFU='; 
 $channel_secret = '47bc90719fa07a6a119bea4d462a29f6'; 
 
-
+// James' API
 //$getData = json_decode(file_get_contents('http://192.168.10.241:5000/api/fromDB'), TRUE);
 $getData = json_decode(file_get_contents('https://api.coinmarketcap.com/v2/ticker/?limit=10'), TRUE);
 
-if(!empty($getData['DB'])) {
-    $priceList = [];
-    foreach($getData['DB'] as $val) {
-      //  $priceList[$val['symbol']] = 'Price: ' . $val['quotes']['USD']['price'] . 'USD ' .$val['quotes']['THB']['price'] . ' THB'; 
-        $priceList[$val['symbol']] = 'Price: ' . $val['quotes']['USD']['price'] . 'USD '; 
+// James' DB
+//if(!empty($getData['DB'])) {
+//    $priceList = [];
+//    foreach($getData['DB'] as $val) {
+//    $priceList[$val['symbol']] = 'Price: ' . $val['quotes']['USD']['price'] . 'USD ' .$val['quotes']['THB']['price'] . ' THB';  
+//    }
+//}
+
+if(!empty($getData['data'])){
+    $priceList =[];
+    foreach($getData['data'] as $val){
+    $priceList[$val['symbol']] = 'Price: ' . $val['quotes']['USD']['price'] . 'USD '; 
     }
 }
 
