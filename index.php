@@ -42,12 +42,11 @@ if (!is_null($events['events'])) {
               
       switch($event['message']['type']) { 
             case 'text': 
-              if(in_array( strtoupper($event['message']['text']), $priceList )) {
+              if(in_array( strtoupper($event['message']['text']), array_keys($priceList) )) {
                   $respMessage = $priceList[strtoupper($event['message']['text'])];
               }else {
                   $respMessage = 'Hello, your message is '. $event['message']['text'];
               }
-//                $respMessage = 'Hello, your message is '. $event['message']['text'];
               //  $respMessage = getdata();
                 break;
                 default:
