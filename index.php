@@ -9,8 +9,8 @@ $channel_token = 'elrTlEnZYv9BqQTLFDG+PsaT3VdBjCzs9/nhqkNNGFaHQDveBfVE2xL0ddW+PG
 $channel_secret = '47bc90719fa07a6a119bea4d462a29f6'; 
 
 
-//$getData = json_decode(file_get_contents('http://192.168.10.241:5000/api/fromDB'), TRUE);
-$getData = json_decode(file_get_contents('https://api.coinmarketcap.com/v2/ticker/?limit=10'), TRUE);
+$getData = json_decode(file_get_contents('http://192.168.10.241:5000/api/fromDB'), TRUE);
+//$getData = json_decode(file_get_contents('https://api.coinmarketcap.com/v2/ticker/?limit=10'), TRUE);
 
 if(!empty($getData['DB'])) {
     $priceList = [];
