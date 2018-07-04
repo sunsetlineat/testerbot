@@ -59,7 +59,8 @@ function getdata(intervalTime = 10){
                 // alert(namesym);
                 for(var i=0;i<100;i++){
                     if(namesym == data.DB[i].name || namesym == data.DB[i].symbol){
-                        $respMessage = 'Price:  '.data.DB[i].quotes.USD.price.'' USD, \n'data.DB[i].quotes.THB.price' THB';
+                        $respMessage = 'Price:  '.data.DB[i].quotes.USD.price.'USD, \n'data.DB[i].quotes.THB.price' THB';
+                        break;
                     }
                 }
                 })
