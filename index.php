@@ -25,7 +25,7 @@ if (!is_null($events['events'])) {
       switch($event['message']['type']) { 
             case 'text': 
                 $respMessage = 'Hello, your message is '. $event['message']['text'];
-                $respMessage = getdata();
+              //  $respMessage = getdata();
                 break;
                 default:
                 //Reply message
