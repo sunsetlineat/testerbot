@@ -15,7 +15,8 @@ $getData = json_decode(file_get_contents('http://192.168.10.241:5000/api/fromDB'
 if(!empty($getData['DB'])) {
     $priceList = [];
     foreach($getData['DB'] as $val) {
-        $priceList[$val['symbol']] = 'Price: ' . $val['quotes']['USD']['price'] . 'USD ' .$val['quotes']['THB']['price'] . ' THB'; 
+      //  $priceList[$val['symbol']] = 'Price: ' . $val['quotes']['USD']['price'] . 'USD ' .$val['quotes']['THB']['price'] . ' THB'; 
+        $priceList[$val['symbol']] = 'Price: ' . $val['quotes']['USD']['price'] . 'USD '; 
     }
 }
 
