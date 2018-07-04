@@ -48,3 +48,21 @@ if (!is_null($events['events'])) {
 } 
 echo "OK";
 
+function getdata(intervalTime = 10){
+            setInterval(function(){ 
+                fetch('http://192.168.10.241:5000/api/fromDB')
+                .then(response => response.json())
+                .then(data => {
+                console.log(data) // Prints result from `response.json()` in getRequest
+                var namesym = document.getElementById($event['message']['text']).value;
+                //var check_data = 0;
+                // alert(namesym);
+                for(var i=0;i<100;i++){
+                    if(namesym == data.DB[i].name || namesym == data.DB[i].symbol){
+                        alert(data.DB[i].quotes.USD.price+" USD, \n"+data.DB[i].quotes.THB.price+" THB");
+                    }
+                }
+                })
+                .catch(error => console.error(error))
+            }, intervalTime);
+        }
