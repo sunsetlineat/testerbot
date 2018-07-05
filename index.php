@@ -23,7 +23,7 @@ $getData = json_decode(file_get_contents('https://api.coinmarketcap.com/v2/ticke
 if(!empty($getData['data'])){
     $priceList =[];
     foreach($getData['data'] as $val){
-    $priceList[$val['symbol']] = 'Price: ' . $val['quotes']['USD']['price'] . ' USD '; 
+    $priceList[$val['symbol']] = 'Current Price: ' . $val['quotes']['USD']['price'] . ' USD '; 
     }
 }
 
