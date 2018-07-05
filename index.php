@@ -70,6 +70,122 @@ if (!is_null($events['events'])) {
     }
     
 } 
+
+
+
+function uploadImageRichmenu ($channelAccessToken){
+  $sh = <<< EOF
+  curl -X POST \
+  -H 'Authorization: Bearer $channelAccessToken' \
+  -H 'Content-Type: image/jpeg' \
+  -T image.jpg \
+  https://api.line.me/v2/bot/richmenu/{richMenuID}/content
+EOF;
+  $result = json_decode(shell_exec(str_replace('\\', '', str_replace(PHP_EOL, '', $sh))), true);
+  if(isset($result['message'])) {
+    return $result['message'];
+
+}
+
+
+function createNewRichmenu($channelAccessToken) {
+    $sh = <<< EOF
+    curl -X POST \
+    -H 'Authorization: Bearer $channelAccessToken' \
+    -H 'Content-Type:application/json' \
+    -d '{
+    "size": {
+    "width": 2500,
+    "height": 1686
+            },
+    "selected": true,
+    "name": "CryptoCurrency Page",
+    "chatBarText": "CryptoCurrency",
+    "areas": [
+      {
+      "bounds": {
+        "x": 0,
+        "y": 0,
+        "width": 833,
+        "height": 843
+        },
+      "action": {
+        "type": "message",
+        "text": "BTC"
+        }
+      },
+      {
+      "bounds": {
+        "x": 834,
+        "y": 0,
+        "width": 833,
+        "height": 843
+        },
+      "action": {
+        "type": "message",
+        "text": "LTC"
+        }
+      },
+      {
+      "bounds": {
+        "x": 1667,
+        "y": 0,
+        "width": 833,
+        "height": 843
+      },
+      "action": {
+        "type": "message",
+        "text": "XRP"
+        }
+      },
+      {
+      "bounds": {
+        "x": 0,
+        "y": 843,
+        "width": 833,
+        "height": 843
+      },
+      "action": {
+        "type": "message",
+        "text": "XLM"
+        }
+      },
+      {
+      "bounds": {
+        "x": 834,
+        "y": 843,
+        "width": 833,
+        "height": 843
+      },
+      "action": {
+        "type": "message",
+        "text": "USDT"
+        }
+      },
+      {
+      "bounds": {
+        "x": 1667,
+        "y": 843,
+        "width": 833,
+        "height": 843
+      },
+      "action": {
+        "type": "message",
+        "text": "ETH"
+        }
+      }
+    ]
+    }'
+EOF;
+   $result = json_decode(shell_exec(str_replace('\\', '', str_replace(PHP_EOL, '', $sh))), true);
+  if(isset($result['richMenuId'])) {
+    return $result['richMenuId'];
+  }
+  else {
+    return $result['message'];
+
+}
+
 echo "OK";
 
 ?>
