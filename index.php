@@ -20,14 +20,14 @@ $getData = json_decode(file_get_contents('https://api.coinmarketcap.com/v2/ticke
 //    }
 //}
 
-setInterval(function(){
+
 if(!empty($getData['data'])){
     $priceList =[];
     foreach($getData['data'] as $val){
     $priceList[$val['symbol']] = 'Current Price: ' . $val['quotes']['USD']['price'] . ' USD '; 
     }
 }
-}, 1000);
+
 
 // Get message from Line API 
 $content = file_get_contents('php://input');
