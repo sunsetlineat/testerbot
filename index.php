@@ -1,6 +1,8 @@
 <?php 
 
 require_once('./vendor/autoload.php'); // Namespace 
+require_once('./testc.php');
+
 use \LINE\LINEBot\HTTPClient\CurlHTTPClient; 
 use \LINE\LINEBot; 
 use \LINE\LINEBot\MessageBuilder\TextMessageBuilder; 
@@ -44,6 +46,7 @@ if (!is_null($events['events'])) {
               
       switch($event['message']['type']) { 
             case 'text': 
+              //if($event['message']['text']=="Current Coin Price")
               if(in_array( strtoupper($event['message']['text']), array_keys($priceList) )) {
                   $respMessage = $priceList[strtoupper($event['message']['text'])];
               }else {
@@ -59,7 +62,7 @@ if (!is_null($events['events'])) {
                                          }
         else if($event['type']=='follow'){     
             // Greeting 
-            $respMessage = 'Thanks you. I try to be your best friend.'; 
+            $respMessage = 'Thank you. I try to be your best friend.'; 
             
        
         }
@@ -81,9 +84,9 @@ function uploadImageRichmenu ($channelAccessToken){
   -T image.jpg \
   https://api.line.me/v2/bot/richmenu/{richMenuID}/content
 EOF;
-  $result = json_decode(shell_exec(str_replace('\\', '', str_replace(PHP_EOL, '', $sh))), true);
-  if(isset($result['message'])) {
-    return $result['message'];
+  // $result = json_decode(shell_exec(str_replace('\\', '', str_replace(PHP_EOL, '', $sh))), true);
+  // if(isset($result['message'])) {
+  //   return $result['message'];
 
 }
 
@@ -123,7 +126,7 @@ function createNewRichmenu($channelAccessToken) {
         },
       "action": {
         "type": "message",
-        "text": "LTC"
+        "text": "ADA"
         }
       },
       {
@@ -135,7 +138,7 @@ function createNewRichmenu($channelAccessToken) {
       },
       "action": {
         "type": "message",
-        "text": "XRP"
+        "text": "ETH"
         }
       },
       {
@@ -147,7 +150,7 @@ function createNewRichmenu($channelAccessToken) {
       },
       "action": {
         "type": "message",
-        "text": "XLM"
+        "text": "OMG"
         }
       },
       {
@@ -159,7 +162,7 @@ function createNewRichmenu($channelAccessToken) {
       },
       "action": {
         "type": "message",
-        "text": "USDT"
+        "text": "EOH"
         }
       },
       {
@@ -171,18 +174,18 @@ function createNewRichmenu($channelAccessToken) {
       },
       "action": {
         "type": "message",
-        "text": "ETH"
+        "text": "XRP"
         }
       }
     ]
     }'
 EOF;
-   $result = json_decode(shell_exec(str_replace('\\', '', str_replace(PHP_EOL, '', $sh))), true);
-  if(isset($result['richMenuId'])) {
-    return $result['richMenuId'];
-  }
-  else {
-    return $result['message'];
+  //  $result = json_decode(shell_exec(str_replace('\\', '', str_replace(PHP_EOL, '', $sh))), true);
+  // if(isset($result['richMenuId'])) {
+  //   return $result['richMenuId'];
+  // }
+  // else {
+  //   return $result['message'];
 
 }
 

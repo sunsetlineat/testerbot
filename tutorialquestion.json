@@ -1,0 +1,22 @@
+{
+	"info" : "tutorial for bot",
+	"questionDB":[
+	{
+	"question":"who are you",
+	"answer":"I'm a crypto chatbot"
+	},
+	{
+	"question":"how to buy",
+	"answer":" "
+
+	},
+	{
+	"question":"how to withdraw",
+	"answer":""
+	},
+	{
+	"question":"how to sell",
+	"answer":" "	
+	}
+	]
+}
