@@ -12,7 +12,9 @@ $channel_secret = '47bc90719fa07a6a119bea4d462a29f6';
 
 $json =  '{"size":{"width":2500,"height":1686},"selected":false,"name":"Controller","chatBarText":"Controller","areas":[{"bounds":{"x":551,"y":325,"width":321,"height":321},"action":{"type":"message","text":"up"}},{"bounds":{"x":876,"y":651,"width":321,"height":321},"action":{"type":"message","text":"right"}},{"bounds":{"x":551,"y":972,"width":321,"height":321},"action":{"type":"message","text":"down"}},{"bounds":{"x":225,"y":651,"width":321,"height":321},"action":{"type":"message","text":"left"}},{"bounds":{"x":1433,"y":657,"width":367,"height":367},"action":{"type":"message","text":"btn b"}},{"bounds":{"x":1907,"y":657,"width":367,"height":367},"action":{"type":"message","text":"btn a"}}]}';
 
-$this->curlData($channel_token, $json);
+$dataR = curlData($channel_token, $json);
+
+curlImages($dataR->richMenuId, 'test', 'image.jpeg', $channel_token);
 
 // James' API
 //$getData = json_decode(file_get_contents('http://192.168.10.241:5000/api/fromDB'), TRUE);

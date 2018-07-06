@@ -21,4 +21,26 @@ $ch = curl_init();
     }
     curl_close ($ch);
     
+    return json_decode($result);
+}
+
+function curlImages($menuId, $name, $pathImages, $auth) {
+    
+    $file_name_with_full_path = realpath($pathImages);
+    $postimg = array('myfile'=>'@'.$file_name_with_full_path);
+    
+
+    $headers = array();
+    $headers[] = '  Content-Type:multipart/form-data';
+    $headers[] = "Authorization: Bearer " . $auth;
+    $headers[] = 'Content-Type: image/jpeg';
+    
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, 'https://api.line.me/v2/bot/richmenu/' . $menuId . '/content');  
+    curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+    curl_setopt($ch, CURLOPT_POST, 1);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $postimg);
+    curl_setopt($ch, CURLOPT_HEADER, 1);  
+    $data = curl_exec($ch);        
+    curl_close($ch);
 }
