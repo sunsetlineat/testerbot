@@ -85,7 +85,7 @@ if (!is_null($events['events'])) {
       switch($event['message']['type']) { 
             case 'text': 
             
-            if(strtoupper($event['message']['text'])==$coinprice){
+            if($event['message']['text']==$coinprice){
                   $respMessage = 'Please put coin symbol to see current price';
                   //$respMessage =
                   
