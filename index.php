@@ -10,11 +10,42 @@ use \LINE\LINEBot\MessageBuilder\TextMessageBuilder;
 $channel_token = 'elrTlEnZYv9BqQTLFDG+PsaT3VdBjCzs9/nhqkNNGFaHQDveBfVE2xL0ddW+PGl1sK/tCikVIoIq8ZcPaPIkgNIWdRO/QeEEENO0+UzmaKZrcZbCc9DDQ8cyoNuVN3Z0R4ewRaMjlDmMD3rePRDxnQdB04t89/1O/w1cDnyilFU='; 
 $channel_secret = '47bc90719fa07a6a119bea4d462a29f6'; 
 
-$json =  '{"size":{"width":2500,"height":1686},"selected":false,"name":"Controller","chatBarText":"Controller","areas":[{"bounds":{"x":551,"y":325,"width":321,"height":321},"action":{"type":"message","text":"up"}},{"bounds":{"x":876,"y":651,"width":321,"height":321},"action":{"type":"message","text":"right"}},{"bounds":{"x":551,"y":972,"width":321,"height":321},"action":{"type":"message","text":"down"}},{"bounds":{"x":225,"y":651,"width":321,"height":321},"action":{"type":"message","text":"left"}},{"bounds":{"x":1433,"y":657,"width":367,"height":367},"action":{"type":"message","text":"btn b"}},{"bounds":{"x":1907,"y":657,"width":367,"height":367},"action":{"type":"message","text":"btn a"}}]}';
+$cointable =  '{"type": "bubble",
+ "body": {
+   "type": "box",
+   "layout": "vertical",
+   "contents": [
+     {
+       "type": "image",
+       "url": "https://github.com/notrealinqx/fuckbot/blob/master/image.jpg",
+       "size": "full"
+     }
+   ]
+,
+ "areas":[
+{"bounds":
+{"x":0,"y":0,"width":833,"height":843},
+"action":{"type":"message","text":"ฺBTC"}},
+{"bounds":
+{"x":834,"y":0,"width":833,"height":843},
+"action":{"type":"message","text":"ADA"}},
+{"bounds":
+{"x":1667,"y":0,"width":833,"height":843},
+"action":{"type":"message","text":"ETH"}},
+{"bounds":
+{"x":0,"y":843,"width":833,"height":843},
+"action":{"type":"message","text":"OMG"}},
+{"bounds":
+{"x":834,"y":843,"width":833,"height":843},
+"action":{"type":"message","text":"EOS"}},
+{"bounds":
+{"x":1667,"y":843,"width":833,"height":843},
+"action":{"type":"message","text":"XRP"}}]
+}}';
 
 $dataR = curlData($channel_token, $json);
 
-curlImages($dataR->richMenuId, 'test', 'image.jpeg', $channel_token);
+//curlImages($dataR->richMenuId, 'test', 'image.jpeg', $channel_token);
 
 // James' API
 //$getData = json_decode(file_get_contents('http://192.168.10.241:5000/api/fromDB'), TRUE);
@@ -54,41 +85,9 @@ if (!is_null($events['events'])) {
       switch($event['message']['type']) { 
             case 'text': 
             
-            if($event['message']['text']==$coinprice){
+            if(strtoupper($event['message']['text'])==$coinprice){
                   $respMessage = 'Please put coin symbol to see current price';
-                  $respMessage ='{
- "type": "bubble",
- "body": {
-   "type": "box",
-   "layout": "vertical",
-   "contents": [
-     {
-       "type": "image",
-       "url": "https://github.com/notrealinqx/fuckbot/blob/master/image.jpg",
-       "size": "full"
-     }
-   ]
-,
- "areas":[
-{"bounds":
-{"x":0,"y":0,"width":833,"height":843},
-"action":{"type":"message","text":"ฺBTC"}},
-{"bounds":
-{"x":834,"y":0,"width":833,"height":843},
-"action":{"type":"message","text":"ADA"}},
-{"bounds":
-{"x":1667,"y":0,"width":833,"height":843},
-"action":{"type":"message","text":"ETH"}},
-{"bounds":
-{"x":0,"y":843,"width":833,"height":843},
-"action":{"type":"message","text":"OMG"}},
-{"bounds":
-{"x":834,"y":843,"width":833,"height":843},
-"action":{"type":"message","text":"EOS"}},
-{"bounds":
-{"x":1667,"y":843,"width":833,"height":843},
-"action":{"type":"message","text":"XRP"}}]
-}';
+                  //$respMessage =
                   
               }         else if(in_array( strtoupper($event['message']['text']), array_keys($priceList) )) {
                   $respMessage = $event['message']['text'].' -> '.$priceList[strtoupper($event['message']['text'])];
