@@ -36,7 +36,7 @@ if(!empty($getData['data'])){
     }
 }
 
-$questiona = 'Coin Price';
+$coinprice = 'Coin Price';
 
 // Get message from Line API 
 $content = file_get_contents('php://input');
@@ -54,9 +54,41 @@ if (!is_null($events['events'])) {
       switch($event['message']['type']) { 
             case 'text': 
             
-            if($event['message']['text']==$questiona){
+            if($event['message']['text']==$coinprice){
                   $respMessage = 'Please put coin symbol to see current price';
-                 // $respMessage =
+                  $respMessage ='{
+ "type": "bubble",
+ "body": {
+   "type": "box",
+   "layout": "vertical",
+   "contents": [
+     {
+       "type": "image",
+       "url": "https://github.com/notrealinqx/fuckbot/blob/master/image.jpg",
+       "size": "full"
+     }
+   ]
+,
+ "areas":[
+{"bounds":
+{"x":0,"y":0,"width":833,"height":843},
+"action":{"type":"message","text":"ฺBTC"}},
+{"bounds":
+{"x":834,"y":0,"width":833,"height":843},
+"action":{"type":"message","text":"ADA"}},
+{"bounds":
+{"x":1667,"y":0,"width":833,"height":843},
+"action":{"type":"message","text":"ETH"}},
+{"bounds":
+{"x":0,"y":843,"width":833,"height":843},
+"action":{"type":"message","text":"OMG"}},
+{"bounds":
+{"x":834,"y":843,"width":833,"height":843},
+"action":{"type":"message","text":"EOS"}},
+{"bounds":
+{"x":1667,"y":843,"width":833,"height":843},
+"action":{"type":"message","text":"XRP"}}]
+}';
                   
               }         else if(in_array( strtoupper($event['message']['text']), array_keys($priceList) )) {
                   $respMessage = $event['message']['text'].' -> '.$priceList[strtoupper($event['message']['text'])];
