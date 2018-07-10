@@ -61,7 +61,7 @@ if (!is_null($events['events'])) {
 //              }
 //              else 
                 if(in_array( strtoupper($event['message']['text']), array_keys($priceList) )) {
-                  $respMessage = $event['message']['text'].' \n '.$priceList[strtoupper($event['message']['text'])];
+                  $respMessage = $event['message']['text'].' /n '.$priceList[strtoupper($event['message']['text'])];
               }
               else {
                   $respMessage = 'Hello, your message is '. $event['message']['text'];
