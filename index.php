@@ -54,12 +54,13 @@ if (!is_null($events['events'])) {
       switch($event['message']['type']) { 
             case 'text': 
             
-              if((stroupper($event['message']['text'])==$questiona)){
-                  $respMessage = 'Please put coin symbol to see current price';
-                 // $respMessage =
-                  
-              }
-              else if(in_array( strtoupper($event['message']['text']), array_keys($priceList) )) {
+//              if((stroupper($event['message']['text'])==$questiona)){
+//                  $respMessage = 'Please put coin symbol to see current price';
+//                 // $respMessage =
+//                  
+//              }
+//              else 
+                if(in_array( strtoupper($event['message']['text']), array_keys($priceList) )) {
                   $respMessage = $event['message']['text'].'= '.$priceList[strtoupper($event['message']['text'])];
               }
               else {
