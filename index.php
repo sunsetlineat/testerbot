@@ -36,6 +36,7 @@ if(!empty($getData['data'])){
     }
 }
 
+$questiona = 'Coin Price';
 
 // Get message from Line API 
 $content = file_get_contents('php://input');
@@ -52,10 +53,16 @@ if (!is_null($events['events'])) {
               
       switch($event['message']['type']) { 
             case 'text': 
-              //if($event['message']['text']=="Current Coin Price")
-              if(in_array( strtoupper($event['message']['text']), array_keys($priceList) )) {
-                  $respMessage = $priceList[strtoupper($event['message']['text'])];
-              }else {
+            
+              if((stroupper($event['message']['text'])==$questiona)){
+                  $respMessage = 'Please put coin symbol to see current price';
+                 // $respMessage =
+                  
+              }
+              else if(in_array( strtoupper($event['message']['text']), array_keys($priceList) )) {
+                  $respMessage = $event['message']['text'].'= '.$priceList[strtoupper($event['message']['text'])];
+              }
+              else {
                   $respMessage = 'Hello, your message is '. $event['message']['text'];
               }
               //  $respMessage = getdata();
