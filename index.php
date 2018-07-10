@@ -10,7 +10,7 @@ use \LINE\LINEBot\MessageBuilder\TextMessageBuilder;
 $channel_token = 'elrTlEnZYv9BqQTLFDG+PsaT3VdBjCzs9/nhqkNNGFaHQDveBfVE2xL0ddW+PGl1sK/tCikVIoIq8ZcPaPIkgNIWdRO/QeEEENO0+UzmaKZrcZbCc9DDQ8cyoNuVN3Z0R4ewRaMjlDmMD3rePRDxnQdB04t89/1O/w1cDnyilFU='; 
 $channel_secret = '47bc90719fa07a6a119bea4d462a29f6'; 
 
-$cointable =  '{"type": "bubble",
+$cointable_json =  '{"type": "bubble",
  "body": {
    "type": "box",
    "layout": "vertical",
@@ -47,6 +47,7 @@ $dataR = curlData($channel_token, $json);
 
 //curlImages($dataR->richMenuId, 'test', 'image.jpeg', $channel_token);
 
+$cointable = json_decode (file_get_contents($cointable_json,true));
 // James' API
 //$getData = json_decode(file_get_contents('http://192.168.10.241:5000/api/fromDB'), TRUE);
 $getData = json_decode(file_get_contents('https://api.coinmarketcap.com/v2/ticker/?limit=10'), TRUE);
@@ -86,10 +87,11 @@ if (!is_null($events['events'])) {
             case 'text': 
             
             if($event['message']['text']==$coinprice){
-                  $respMessage = 'Please put coin symbol to see current price';
-                  //$respMessage =
+                $respMessage = $cointable;
+                $respMessage = 'Please click the image above or insert coin symbol to see current price';
                   
-              }         else if(in_array( strtoupper($event['message']['text']), array_keys($priceList) )) {
+              }         
+              else if(in_array( strtoupper($event['message']['text']), array_keys($priceList) )) {
                   $respMessage = $event['message']['text'].' -> '.$priceList[strtoupper($event['message']['text'])];
               }
               else {
