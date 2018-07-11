@@ -110,7 +110,7 @@ if (!is_null($events['events'])) {
             case 'text': 
             
             if($event['message']['text']==$coinprice){
-                $respMessage = '{
+                $respMessageImg = '{
   "type": "bubble",
   "body": {
     "type": "box",
@@ -151,6 +151,9 @@ if (!is_null($events['events'])) {
         $bot = new LINEBot($httpClient, array('channelSecret' => $channel_secret)); 
         $textMessageBuilder = new TextMessageBuilder($respMessage);
         $response = $bot->replyMessage($replyToken, $textMessageBuilder);
+        $ImageMessageBuilder = new ImageMessageBuilder ($respMessageImg);
+        $response = $bot->replyMessage($replyToken,$textMesssageBuilder);
+        
     }
     
 }
