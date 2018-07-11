@@ -110,7 +110,7 @@ if (!is_null($events['events'])) {
             case 'text': 
             
             if($event['message']['text']==$coinprice){
-                $respMessage = '{
+                $respMessageImg = '{
   "type": "bubble",
   "body": {
     "type": "box",
@@ -153,8 +153,8 @@ if (!is_null($events['events'])) {
         $textMessageBuilder = new TextMessageBuilder($respMessage);
         $response = $bot->replyMessage($replyToken, $textMessageBuilder);
         // ImageMessage
-       // $ImageMessageBuilder = new ImageMessageBuilder ($respMessageImg);
-    //    $response = $bot->replyMessage($replyToken,$textMesssageBuilder);
+        $TextMessageBuilder = new ImageMessageBuilder ($respMessageImg);
+        $response = $bot->replyMessage($replyToken,$textMesssageBuilder);
         
     }
     
