@@ -108,7 +108,27 @@ if (!is_null($events['events'])) {
             case 'text': 
             
             if($event['message']['text']==$coinprice){
-                $respMessage = $cointable;
+                $respMessage = '{  
+  "type": "flex",
+  "altText": "this is a flex message",
+  "contents": {
+    "type": "bubble",
+    "body": {
+      "type": "box",
+      "layout": "vertical",
+      "contents": [
+        {
+          "type": "text",
+          "text": "hello"
+        },
+        {
+          "type": "text",
+          "text": "world"
+        }
+      ]
+    }
+  }
+}';
                 $respMessage = 'Please click the image above or insert coin symbol to see current price';
                   
               }         
