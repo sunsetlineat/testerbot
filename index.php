@@ -108,6 +108,9 @@ if (!is_null($events['events'])) {
               
       switch($event['message']['type']) { 
             case 'text': 
+             if(in_array( strtoupper($event['message']['text']), array_keys($priceList) )) {
+                  $respMessage = $event['message']['text'].' -> '.$priceList[strtoupper($event['message']['text'])];
+              }  
             
             if($event['message']['text']==$coinprice){
                 $respMessageImg = '{
@@ -127,9 +130,6 @@ if (!is_null($events['events'])) {
                 $respMessage = 'Please click the image above or insert coin symbol to see current price';
                   
               }         
-              else if(in_array( strtoupper($event['message']['text']), array_keys($priceList) )) {
-                  $respMessage = $event['message']['text'].' -> '.$priceList[strtoupper($event['message']['text'])];
-              }
               else {
                   $respMessage = 'Hello, your message is '. $event['message']['text'];
               }
