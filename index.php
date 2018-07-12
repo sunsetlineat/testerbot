@@ -111,35 +111,35 @@ if (!is_null($events['events'])) {
             
             if($event['message']['text']==$coinprice){
                 $respMessageImg = '{
-  "type": "bubble",
-  "body": {
-    "type": "box",
-    "layout": "horizontal",
-    "contents": [
-      {
-        "type": "text",
-        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod\n tempor incididunt ut labore et dolore magna aliqua.",
-        "wrap": true
-      }
-    ]
-  }
-}';
+                "type": "bubble",
+                "body": {
+                "type": "box",
+                "layout": "horizontal",
+                "contents": [
+                {
+                "type": "text",
+                "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod\n tempor incididunt ut labore et dolore magna aliqua.",
+                "wrap": true
+                }
+                ]
+                }
+                }';
                 $respMessage = 'Please click the image above or insert coin symbol to see current price';
                   
               }         
-              else if(in_array( strtoupper($event['message']['text']), array_keys($priceList) )) {
+             if(in_array( strtoupper($event['message']['text']), array_keys($priceList) )) {
                   $respMessage = $event['message']['text'].' -> '.$priceList[strtoupper($event['message']['text'])];
               }
-              else {
-                  $respMessage = 'Hello, your message is '. $event['message']['text'];
-              }
-              //  $respMessage = getdata();
-                break;
-                default:
-                //Reply message
-                $respMessage='What a nice day!';
-                break;
-            }
+//              else {
+//                  $respMessage = 'Hello, your message is '. $event['message']['text'];
+//              }
+//              //  $respMessage = getdata();
+//                break;
+//                default:
+//                //Reply message
+//                $respMessage='What a nice day!';
+//                break;
+//            }
                                          }
         else if($event['type']=='follow'){     
             // Greeting 
