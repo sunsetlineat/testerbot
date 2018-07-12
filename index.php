@@ -127,19 +127,19 @@ if (!is_null($events['events'])) {
                 $respMessage = 'Please click the image above or insert coin symbol to see current price';
                   
               }         
-             if(in_array( strtoupper($event['message']['text']), array_keys($priceList) )) {
+              else if(in_array( strtoupper($event['message']['text']), array_keys($priceList) )) {
                   $respMessage = $event['message']['text'].' -> '.$priceList[strtoupper($event['message']['text'])];
               }
-//              else {
-//                  $respMessage = 'Hello, your message is '. $event['message']['text'];
-//              }
-//              //  $respMessage = getdata();
-//                break;
-//                default:
-//                //Reply message
-//                $respMessage='What a nice day!';
-//                break;
-//            }
+              else {
+                  $respMessage = 'Hello, your message is '. $event['message']['text'];
+              }
+              //  $respMessage = getdata();
+                break;
+                default:
+                //Reply message
+                $respMessage='What a nice day!';
+                break;
+            }
                                          }
         else if($event['type']=='follow'){     
             // Greeting 
