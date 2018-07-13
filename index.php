@@ -65,14 +65,9 @@ $getData = json_decode(file_get_contents('https://api.coinmarketcap.com/v2/ticke
 
 if(!empty($getData['data'])){
     $priceList =[];
-    foreach($getData['data'] as $val){
-    $priceList[$val['symbol']] = 'Current Price: ' . $val['quotes']['USD']['price'] . ' USD '; 
-    }
-}
-
-if(!empty($getData['data'])){
     $priceListName =[];
     foreach($getData['data'] as $val){
+    $priceList[$val['symbol']] = 'Current Price: ' . $val['quotes']['USD']['price'] . ' USD '; 
     $priceListName[$val['name']] = 'Current Price: ' . $val['quotes']['USD']['price'] . ' USD '; 
     }
 }
