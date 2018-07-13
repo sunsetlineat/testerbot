@@ -31,9 +31,12 @@ if (!is_null($request_array['events'])) {
                                 'to' => $event['source']['userId'],
                                 'messages' => [
                                 [
+                                    'type' => 'flex', 
+                        'altText' => 'This is a Flex Message',
+                        'contents'  =>[
                                 'type'=> 'bubble',
-  'header'=> [
-    'type'=> 'box',
+                                'header'=> [
+                                'type'=> 'box',
     'layout'=> 'vertical',
     'contents'=> [
       [
@@ -167,6 +170,7 @@ if (!is_null($request_array['events'])) {
       ]
     ]
   ]
+]
                                 ]
                             ]
                             ];
