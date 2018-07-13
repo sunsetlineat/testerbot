@@ -56,15 +56,9 @@ if (!is_null($request_array['events'])) {
                 $post_body = json_encode($data);
                 $send_result = send_reply_message($API_URL.'/push', $POST_HEADER, $post_body);
                 echo "Result: ".$send_result."\r\n";
-                } else{
-                    $reply_message = 'สวัสดีนายท่าน '. $text;
-                }
-            } else { 
-                $reply_message = 'ระบบได้รับ '.ucfirst($event['message']['type']).' ของคุณแล้ว';
-            }
-        } else {
-            $reply_message = 'ระบบได้รับ Event '.ucfirst($event['type']).' ของคุณแล้ว';
-        }
+                } 
+            } 
+        } 
     }
 }
 echo "OK";
