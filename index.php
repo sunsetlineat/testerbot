@@ -59,7 +59,7 @@ if (!is_null($request_array['events'])) {
   ],
   'hero'=> [
     'type'=> 'image',
-    'url'=> 'https=>//github.com/notrealinqx/fuckbot/blob/master/image.jpg',
+    'url'=> 'https://bitkubblockchain.com/wp-content/uploads/2018/01/line-menu-test.png',
     'size'=> 'full',
     'aspectRatio'=> '20=>13',
     'aspectMode'=> 'cover'
