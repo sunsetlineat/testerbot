@@ -98,7 +98,7 @@ if (!is_null($events['events'])) {
                   $respMessage = $event['message']['text'].' -> '.$priceList[strtoupper($event['message']['text'])];
               }  
               
-             if(in_array( strtoupper($event['message']['text']), array_keys($priceList) )) {
+             if(in_array( strtoupper($event['message']['text']), array_keys($priceListName) )) {
                   $respMessage = $event['message']['text'].' -> '.$priceListName[strtoupper($event['message']['text'])];
               } 
             
