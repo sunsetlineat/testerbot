@@ -94,13 +94,10 @@ if (!is_null($events['events'])) {
               
       switch($event['message']['type']) { 
             case 'text': 
-             if(in_array( strtoupper($event['message']['text']), array_keys($priceList) )) {
+             if(in_array( strtoupper($event['message']['text']), array_keys($priceList) ) ||in_array( strtoupper($event['message']['text']), array_keys($priceListName) ) ) {
                   $respMessage = $event['message']['text'].' -> '.$priceList[strtoupper($event['message']['text'])];
               }  
               
-             if(in_array( strtoupper($event['message']['text']), array_keys($priceListName) )) {
-                  $respMessage = $event['message']['text'].' -> '.$priceListName[strtoupper($event['message']['text'])];
-              } 
             
             if($event['message']['text']==$coinprice){
                 $respMessageImg = '{
