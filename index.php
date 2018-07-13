@@ -34,9 +34,9 @@ if (!is_null($request_array['events'])) {
                 if( $text == 'Coin Price') {
 
                      $data = [
-                'replyToken' => $reply_token,
+                 'to' => $event['source']['userId'],
                 // 'messages' => [['type' => 'text', 'text' => $reply_message]]
-                'messages' => [['type' => 'text', 'text' => json_encode($request_array)]]
+                'messages' => [['type' => 'text', 'text' => ''.$priceList)]]
             ];
             $post_body = json_encode($data, JSON_UNESCAPED_UNICODE);
             $send_result = send_reply_message($API_URL.'/reply', $POST_HEADER, $post_body);
