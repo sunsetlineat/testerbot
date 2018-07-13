@@ -5,7 +5,8 @@ $channelSecret = '47bc90719fa07a6a119bea4d462a29f6';
 $POST_HEADER = array('Content-Type: application/json', 'Authorization: Bearer ' . $ACCESS_TOKEN);
 $request = file_get_contents('php://input');   // Get request content
 $request_array = json_decode($request, true);   // Decode JSON to Array
-if ( sizeof($request_array['events']) > 0 ) {
+
+if (!is_null($request_array['events'])) {
     foreach ($request_array['events'] as $event) {
         $reply_message = '';
         $reply_token = $event['replyToken'];
