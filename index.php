@@ -26,6 +26,11 @@ if (!is_null($request_array['events'])) {
             if( $event['message']['type'] == 'text' ) {
                 
                 $text = $event['message']['text'];
+
+                if(in_array(strtoupper($event['message']['text']),array_keys($priceList))){
+                    $reply_message = $event['message']['text'].' -> '.$priceList[strtoupper($event['message']['text'])];
+                }
+
                 if( $text == 'Coin Price') {
 
                      $data = [
@@ -36,7 +41,7 @@ if (!is_null($request_array['events'])) {
             $post_body = json_encode($data, JSON_UNESCAPED_UNICODE);
             $send_result = send_reply_message($API_URL.'/reply', $POST_HEADER, $post_body);
 
-            
+
                                 $data = [
                                 'to' => $event['source']['userId'],
                                 'messages' => [
@@ -47,28 +52,28 @@ if (!is_null($request_array['events'])) {
                                 'type'=> 'bubble',
                                 'header'=> [
                                 'type'=> 'box',
-    'layout'=> 'vertical',
-    'contents'=> [
+                                'layout'=> 'vertical',
+                                'contents'=> [
       [
         'type'=> 'text',
         'text'=> 'Coin Price',
         'size'=> 'xl',
         'weight'=> 'bold'
       ]
-    ]
-  ],
-  'hero'=> [
-    'type'=> 'image',
-    'url'=> 'https://bitkubblockchain.com/wp-content/uploads/2018/01/line-menu-test.png',
-    'size'=> 'full',
-    'aspectRatio'=> '20=>13',
-    'aspectMode'=> 'cover'
-  ],
-  'body'=> [
-    'type'=> 'box',
-    'layout'=> 'vertical',
-    'spacing'=> 'md',
-    'contents'=> [
+                                    ]
+                                ],
+                                'hero'=> [
+                                'type'=> 'image',
+                                'url'=> 'https://bitkubblockchain.com/wp-content/uploads/2018/01/line-menu-test.png',
+                                'size'=> 'full',
+                                'aspectRatio'=> '20=>13',
+                                'aspectMode'=> 'cover'
+                                ],
+                                'body'=> [
+                                'type'=> 'box',
+                                'layout'=> 'vertical',
+                                'spacing'=> 'md',
+                                'contents'=> [
       [
         'type'=> 'separator',
         'margin'=> 'lg'
@@ -162,12 +167,12 @@ if (!is_null($request_array['events'])) {
           ]
         ]
       ]
-    ]
-  ],
-  'footer'=> [
-    'type'=> 'box',
-    'layout'=> 'vertical',
-    'contents'=> [
+                                        ]
+                                ],
+                                'footer'=> [
+                                'type'=> 'box',
+                                'layout'=> 'vertical',
+                                'contents'=> [
       [
         'type'=> 'button',
         'margin'=> 'sm',
@@ -178,9 +183,9 @@ if (!is_null($request_array['events'])) {
         ],
         'style'=> 'secondary'
       ]
-    ]
-  ]
-]
+                                            ]
+                                        ]
+                                    ]
                                 ]
                             ]
                             ];
