@@ -45,27 +45,6 @@ $channel_secret = '47bc90719fa07a6a119bea4d462a29f6';
 //"action":{"type":"message","text":"XRP"}}]
 //}}';
 
-$cointable_json = '{  
-  "type": "flex",
-  "altText": "this is a flex message",
-  "contents": {
-    "type": "bubble",
-    "body": {
-      "type": "box",
-      "layout": "vertical",
-      "contents": [
-        {
-          "type": "text",
-          "text": "hello"
-        },
-        {
-          "type": "text",
-          "text": "world"
-        }
-      ]
-    }
-  }
-}';
 
 $dataR = curlData($channel_token, $json);
 
@@ -91,6 +70,13 @@ if(!empty($getData['data'])){
     }
 }
 
+if(!empty($getData['data'])){
+    $priceListName =[];
+    foreach($getData['data'] as $val){
+    $priceListName[$val['name']] = 'Current Price: ' . $val['quotes']['USD']['price'] . ' USD '; 
+    }
+}
+
 $coinprice = 'Coin Price';
 
 // Get message from Line API 
@@ -111,6 +97,10 @@ if (!is_null($events['events'])) {
              if(in_array( strtoupper($event['message']['text']), array_keys($priceList) )) {
                   $respMessage = $event['message']['text'].' -> '.$priceList[strtoupper($event['message']['text'])];
               }  
+              
+             if(in_array( strtoupper($event['message']['text']), array_keys($priceList) )) {
+                  $respMessage = $event['message']['text'].' -> '.$priceListName[strtoupper($event['message']['text'])];
+              } 
             
             if($event['message']['text']==$coinprice){
                 $respMessageImg = '{
