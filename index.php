@@ -12,7 +12,7 @@ $API_URL ='https://api.line/me/v2/bot/message';
 $channel_token = 'elrTlEnZYv9BqQTLFDG+PsaT3VdBjCzs9/nhqkNNGFaHQDveBfVE2xL0ddW+PGl1sK/tCikVIoIq8ZcPaPIkgNIWdRO/QeEEENO0+UzmaKZrcZbCc9DDQ8cyoNuVN3Z0R4ewRaMjlDmMD3rePRDxnQdB04t89/1O/w1cDnyilFU='; 
 $channel_secret = '47bc90719fa07a6a119bea4d462a29f6'; 
 
-$POST_HEADER = array('Content-Type: application/json', 'Authorization: Bearer ' . $ACCESS_TOKEN);
+$POST_HEADER = array('Content-Type: application/json', 'Authorization: Bearer ' . $channel_token);
 
 
 // James' API
@@ -41,11 +41,11 @@ $coinprice = 'Coin Price';
 
 // Get message from Line API 
 $request = file_get_contents('php://input');
-$events_essay = json_decode($request, true); 
+$events_s = json_decode($request, true); 
 
-if (!is_null($events['events'])) { 
+if (!is_null($events_s['events'])) { 
     // Loop through each event 
-    foreach ($events_essay['events'] as $event) { 
+    foreach ($events_s['events'] as $event) { 
        // Get replyToken 
         $replyToken = $event['replyToken']; 
         $ask = $event['message']['text'];
