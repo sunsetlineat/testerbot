@@ -29,14 +29,21 @@ if (!is_null($request_array['events'])) {
 
                 if(in_array(strtoupper($event['message']['text']),array_keys($priceList))){
                     $reply_message = $event['message']['text'].' -> '.$priceList[strtoupper($event['message']['text'])];
+
+                    $data = [
+                        'to' => $event['source']['userId'],
+                        'message' => $priceList[strtoupper($event['message']['text'])]
+                            ];
+                         $post_body = json_encode($data, JSON_UNESCAPED_UNICODE);
+                         $send_result = send_reply_message($API_URL.'/reply', $POST_HEADER, $post_body);
                 }
 
                 if( $text == 'Coin Price') {
 
                      $data = [
-                 'to' => $event['source']['userId'],
+                'replyToken' => $reply_token,
                 // 'messages' => [['type' => 'text', 'text' => $reply_message]]
-                'messages' => [['type' => 'text', 'text' => ''.$priceList)]]
+                'messages' => [['type' => 'text', 'text' => json_encode($priceList)]]
             ];
             $post_body = json_encode($data, JSON_UNESCAPED_UNICODE);
             $send_result = send_reply_message($API_URL.'/reply', $POST_HEADER, $post_body);
