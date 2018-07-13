@@ -62,7 +62,7 @@ if (!is_null($events_s['events'])) {
             if($event['message']['text']==$coinprice){
                
                 $respMessage = 'Please click the image above or insert coin symbol to see current price';
-                  $respMessage = [  'to' => $event['source']['userId'],
+                  $data = [  'to' => $event['source']['userId'],
                 'messages' => [
                     [
                         'type' => 'flex', 
@@ -98,7 +98,7 @@ if (!is_null($events_s['events'])) {
                     ]
                 ]
             ];
-            $post_body = json_encode($respMessage);
+            $post_body = json_encode($data);
             $send_result = send_reply_message($API_URL.'/push', $POST_HEADER, $post_body);
                   
               }         
