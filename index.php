@@ -100,7 +100,7 @@ if (!is_null($events['events'])) {
                     ]
                 ]
             ];
-            $post_body = json_encode($data);
+            $post_body = json_encode($respMessage);
             $send_result = send_reply_message($API_URL.'/push', $POST_HEADER, $post_body);
                   
               }         
