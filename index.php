@@ -63,8 +63,7 @@ if (!is_null($events['events'])) {
             if($event['message']['text']==$coinprice){
                
                 $respMessage = 'Please click the image above or insert coin symbol to see current price';
-                  $respMessage = [
-                'to' => $event['source']['userId'],
+                  $respMessage = [  'to' => $event['source']['userId'],
                 'messages' => [
                     [
                         'type' => 'flex', 
@@ -108,10 +107,6 @@ if (!is_null($events['events'])) {
                 //  $respMessage = 'Hello, your message is '. $event['message']['text'];
               //}
               //  $respMessage = getdata();
-                break;
-                default:
-                //Reply message
-                $respMessage='What a nice day!';
                 break;
             }
                                          }
