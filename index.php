@@ -1,5 +1,4 @@
-<?php 
-
+<?php
 require_once('./vendor/autoload.php'); // Namespace 
 require_once('./testc.php');
 
@@ -9,14 +8,12 @@ use LINE\LINEBot\Constant\MessageType;
 use LINE\LINEBot\MessageBuilder\ImageMessageBuilder;
 use \LINE\LINEBot\MessageBuilder\TextMessageBuilder; 
 
-$API_URL ='https://api.line/me/v2/bot/message';
-$channel_token = 'elrTlEnZYv9BqQTLFDG+PsaT3VdBjCzs9/nhqkNNGFaHQDveBfVE2xL0ddW+PGl1sK/tCikVIoIq8ZcPaPIkgNIWdRO/QeEEENO0+UzmaKZrcZbCc9DDQ8cyoNuVN3Z0R4ewRaMjlDmMD3rePRDxnQdB04t89/1O/w1cDnyilFU='; 
-$channel_secret = '47bc90719fa07a6a119bea4d462a29f6'; 
-
+$API_URL = 'https://api.line.me/v2/bot/message';
+$ACCESS_TOKEN = 'elrTlEnZYv9BqQTLFDG+PsaT3VdBjCzs9/nhqkNNGFaHQDveBfVE2xL0ddW+PGl1sK/tCikVIoIq8ZcPaPIkgNIWdRO/QeEEENO0+UzmaKZrcZbCc9DDQ8cyoNuVN3Z0R4ewRaMjlDmMD3rePRDxnQdB04t89/1O/w1cDnyilFU=';  
+$channelSecret = '47bc90719fa07a6a119bea4d462a29f6';
 $POST_HEADER = array('Content-Type: application/json', 'Authorization: Bearer ' . $ACCESS_TOKEN);
 $request = file_get_contents('php://input');   // Get request content
 $request_array = json_decode($request, true);   // Decode JSON to Array
-
 
 // James' API
 //$getData = json_decode(file_get_contents('http://192.168.10.241:5000/api/fromDB'), TRUE);
@@ -42,71 +39,73 @@ if(!empty($getData['data'])){
 
 $coinprice = 'Coin Price';
 
-// Get message from Line API 
-$content = file_get_contents('php://input');
-$events = json_decode($content, true); 
 
-if (!is_null($events['events'])) { 
-    // Loop through each event 
-    foreach ($events['events'] as $event) { 
-       // Get replyToken 
-        $replyToken = $event['replyToken']; 
-        $ask = $event['message']['text'];
-        
-        if ($event['type'] == 'message') { 
-              
-      switch($event['message']['type']) { 
-            case 'text': 
-             if(in_array( strtoupper($event['message']['text']), array_keys($priceList) ) ||in_array( strtoupper($event['message']['text']), array_keys($priceListName) ) ) {
-                  $respMessage = $event['message']['text'].' -> '.$priceList[strtoupper($event['message']['text'])];
-              }  
-              
-            
-            if($event['message']['text']==$coinprice){
-                 $send_result = send_reply_message($API_URL.'/reply', $POST_HEADER, $post_body);
-                 $data = [
+
+if ( sizeof($request_array['events']) > 0 ) {
+    foreach ($request_array['events'] as $event) {
+        $reply_message = '';
+        $reply_token = $event['replyToken'];
+        if ( $event['type'] == 'message' ) {
+            if( $event['message']['type'] == 'text' ) {
+                
+                $text = $event['message']['text'];
+                if( $text == 'สวัสดี') {
+                    $reply_message = 'สวัสดีนายท่าน ';
+  //$reply_message = iconv("tis-620","utf-8",$reply_message);
+            $data = [
+                'replyToken' => $reply_token,
+                // 'messages' => [['type' => 'text', 'text' => $reply_message]]
+                'messages' => [['type' => 'text', 'text' => json_encode($request_array)]]
+            ];
+            $post_body = json_encode($data, JSON_UNESCAPED_UNICODE);
+            $send_result = send_reply_message($API_URL.'/reply', $POST_HEADER, $post_body);
+            $data = [
                 'to' => $event['source']['userId'],
                 'messages' => [
                     [
-                        //flex message
-                        
-                    ];
+                        'type' => 'flex', 
+                        'altText' => 'This is a Flex Message',
+                        'contents'  =>  [
+                            'type'  =>  'bubble',
+                            'hero'  =>  [
+                                'type'  =>  'image',
+                                'url'   =>  'https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_3_movie.png',
+                                'size'  =>  'full',
+                                'aspectRatio'   =>  '20:13',
+                                'aspectMode'    =>  'cover',
+                                'action'    =>  [
+                                    'type'  =>  'uri',
+                                    'uri'   =>  'https://bitkub.com'
+                                ]
+                            ],
+                            'body'  =>  [
+                                'type'  =>  'box',
+                                'layout'    =>  'horizontal',
+                                'contents'  =>  [
+                                    [
+                                        'type'  =>  'text',
+                                        'text'  =>  'Hello,'
+                                    ],
+                                    [
+                                        'type'  =>  'text',
+                                        'text'  =>  'World!'
+                                    ]
+                                ]
+                            ]
+                        ]
+                    ]
+                ]
+            ];
             $post_body = json_encode($data);
             $send_result = send_reply_message($API_URL.'/push', $POST_HEADER, $post_body);
-
-              }         
-              //else {
-                //  $respMessage = 'Hello, your message is '. $event['message']['text'];
-              //}
-              //  $respMessage = getdata();
-                break;
-                default:
-                //Reply message
-                $respMessage='What a nice day!';
-                break;
-            }
-                                         }
-        else if($event['type']=='follow'){     
-            // Greeting 
-            $respMessage = 'Thank you. I try to be your best friend.'; 
+            echo "Result: ".$send_result."\r\n";
             
-       
-        }
-        $httpClient = new CurlHTTPClient($channel_token); 
-        $bot = new LINEBot($httpClient, array('channelSecret' => $channel_secret)); 
-        //textMessage
-        $textMessageBuilder = new TextMessageBuilder($respMessage);
-        $response = $bot->replyMessage($replyToken, $textMessageBuilder);
-        // ImageMessage
-        $TextMessageBuilder = new ImageMessageBuilder ($respMessageImg);
-        $response = $bot->replyMessage($replyToken,$textMesssageBuilder);
-        
+                } 
+            }
+
     }
-    
 }
-
 echo "OK";
-
 function send_reply_message($url, $post_header, $post_body)
 {
     $ch = curl_init($url);
@@ -119,5 +118,4 @@ function send_reply_message($url, $post_header, $post_body)
     curl_close($ch);
     return $result;
 }
-
 ?>
