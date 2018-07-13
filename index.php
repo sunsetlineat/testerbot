@@ -130,9 +130,9 @@ if (!is_null($events['events'])) {
                 $respMessage = 'Please click the image above or insert coin symbol to see current price';
                   
               }         
-              else {
-                  $respMessage = 'Hello, your message is '. $event['message']['text'];
-              }
+              //else {
+                //  $respMessage = 'Hello, your message is '. $event['message']['text'];
+              //}
               //  $respMessage = getdata();
                 break;
                 default:
