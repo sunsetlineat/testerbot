@@ -1,68 +1,41 @@
-<?php 
-
-require_once('./vendor/autoload.php'); // Namespace 
-
-use \LINE\LINEBot\HTTPClient\CurlHTTPClient; 
-use \LINE\LINEBot; 
-use LINE\LINEBot\Constant\MessageType;
-use LINE\LINEBot\MessageBuilder\ImageMessageBuilder;
-use \LINE\LINEBot\MessageBuilder\TextMessageBuilder; 
-
-$API_URL ='https://api.line/me/v2/bot/message';
-$channel_token = 'elrTlEnZYv9BqQTLFDG+PsaT3VdBjCzs9/nhqkNNGFaHQDveBfVE2xL0ddW+PGl1sK/tCikVIoIq8ZcPaPIkgNIWdRO/QeEEENO0+UzmaKZrcZbCc9DDQ8cyoNuVN3Z0R4ewRaMjlDmMD3rePRDxnQdB04t89/1O/w1cDnyilFU='; 
-$channel_secret = '47bc90719fa07a6a119bea4d462a29f6'; 
-
-$POST_HEADER = array('Content-Type: application/json', 'Authorization: Bearer ' . $channel_token);
-
-
-// James' API
-//$getData = json_decode(file_get_contents('http://192.168.10.241:5000/api/fromDB'), TRUE);
-$getData = json_decode(file_get_contents('https://api.coinmarketcap.com/v2/ticker/?limit=10'), TRUE);
-
-// James' DB
-//if(!empty($getData['DB'])) {
-//    $priceList = [];
-//    foreach($getData['DB'] as $val) {
-//    $priceList[$val['symbol']] = 'Price: ' . $val['quotes']['USD']['price'] . 'USD ' .$val['quotes']['THB']['price'] . ' THB';  
-//    }
-//}
-
-
-if(!empty($getData['data'])){
-    $priceList =[];
-    $priceListName =[];
-    foreach($getData['data'] as $val){
-    $priceList[$val['symbol']] = 'Current Price: ' . $val['quotes']['USD']['price'] . ' USD '; 
-    $priceListName[$val['name']] = 'Current Price: ' . $val['quotes']['USD']['price'] . ' USD '; 
-    }
-}
-
-$coinprice = 'Coin Price';
-
-// Get message from Line API 
-$request = file_get_contents('php://input');
-$events_s = json_decode($request, true); 
-
-if (!is_null($events_s['events'])) { 
-    // Loop through each event 
-    foreach ($events_s['events'] as $event) { 
-       // Get replyToken 
-        $replyToken = $event['replyToken']; 
-        $ask = $event['message']['text'];
-        
-        if ($event['type'] == 'message') { 
-              
-      switch($event['message']['type']) { 
-            case 'text': 
-             if(in_array( strtoupper($event['message']['text']), array_keys($priceList) ) ) {
-                  $respMessage = $event['message']['text'].' -> '.$priceList[strtoupper($event['message']['text'])];
-              }  
-              
-            
-            if($event['message']['text']==$coinprice){
-               
-                $respMessage = 'Please click the image above or insert coin symbol to see current price';
-                  $data = [  'to' => $event['source']['userId'],
+<?php
+$API_URL = 'https://api.line.me/v2/bot/message';
+$ACCESS_TOKEN = 'elrTlEnZYv9BqQTLFDG+PsaT3VdBjCzs9/nhqkNNGFaHQDveBfVE2xL0ddW+PGl1sK/tCikVIoIq8ZcPaPIkgNIWdRO/QeEEENO0+UzmaKZrcZbCc9DDQ8cyoNuVN3Z0R4ewRaMjlDmMD3rePRDxnQdB04t89/1O/w1cDnyilFU='; 
+$channelSecret = '47bc90719fa07a6a119bea4d462a29f6';
+$POST_HEADER = array('Content-Type: application/json', 'Authorization: Bearer ' . $ACCESS_TOKEN);
+$request = file_get_contents('php://input');   // Get request content
+$request_array = json_decode($request, true);   // Decode JSON to Array
+if ( sizeof($request_array['events']) > 0 ) {
+    foreach ($request_array['events'] as $event) {
+        $reply_message = '';
+        $reply_token = $event['replyToken'];
+        if ( $event['type'] == 'message' ) {
+            if( $event['message']['type'] == 'text' ) {
+                
+                $text = $event['message']['text'];
+                if( $text == 'สวัสดี') {
+                    $reply_message = 'สวัสดีนายท่าน ';
+                } else{
+                    $reply_message = 'สวัสดีนายท่าน '. $text;
+                }
+            } else { 
+                $reply_message = 'ระบบได้รับ '.ucfirst($event['message']['type']).' ของคุณแล้ว';
+            }
+        } else {
+            $reply_message = 'ระบบได้รับ Event '.ucfirst($event['type']).' ของคุณแล้ว';
+        }
+        if( strlen($reply_message) > 0 )
+        {
+            //$reply_message = iconv("tis-620","utf-8",$reply_message);
+            $data = [
+                'replyToken' => $reply_token,
+                // 'messages' => [['type' => 'text', 'text' => $reply_message]]
+                'messages' => [['type' => 'text', 'text' => json_encode($request_array)]]
+            ];
+            $post_body = json_encode($data, JSON_UNESCAPED_UNICODE);
+            $send_result = send_reply_message($API_URL.'/reply', $POST_HEADER, $post_body);
+            $data = [
+                'to' => $event['source']['userId'],
                 'messages' => [
                     [
                         'type' => 'flex', 
@@ -100,35 +73,11 @@ if (!is_null($events_s['events'])) {
             ];
             $post_body = json_encode($data);
             $send_result = send_reply_message($API_URL.'/push', $POST_HEADER, $post_body);
-                  
-              }         
-              //else {
-                //  $respMessage = 'Hello, your message is '. $event['message']['text'];
-              //}
-              //  $respMessage = getdata();
-                break;
-            }
-                                         }
-        else if($event['type']=='follow'){     
-            // Greeting 
-            $respMessage = 'Thank you. I try to be your best friend.'; 
-            
-       
+            echo "Result: ".$send_result."\r\n";
         }
-        
-        $httpClient = new CurlHTTPClient($channel_token); 
-        $bot = new LINEBot($httpClient, array('channelSecret' => $channel_secret)); 
-        //textMessage
-        $textMessageBuilder = new TextMessageBuilder($respMessage);
-        $response = $bot->replyMessage($replyToken, $textMessageBuilder);
-    
-        
     }
-    
 }
-
 echo "OK";
-
 function send_reply_message($url, $post_header, $post_body)
 {
     $ch = curl_init($url);
