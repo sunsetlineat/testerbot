@@ -41,12 +41,12 @@ if(!empty($getData['data'])){
 $coinprice = 'Coin Price';
 
 // Get message from Line API 
-$content = file_get_contents('php://input');
-$events = json_decode($content, true); 
+$request = file_get_contents('php://input');
+$events_essay = json_decode($request, true); 
 
 if (!is_null($events['events'])) { 
     // Loop through each event 
-    foreach ($events['events'] as $event) { 
+    foreach ($events_essay['events'] as $event) { 
        // Get replyToken 
         $replyToken = $event['replyToken']; 
         $ask = $event['message']['text'];
