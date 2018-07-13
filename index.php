@@ -1,7 +1,6 @@
 <?php 
 
 require_once('./vendor/autoload.php'); // Namespace 
-require_once('./testc.php');
 
 use \LINE\LINEBot\HTTPClient\CurlHTTPClient; 
 use \LINE\LINEBot; 
@@ -122,9 +121,7 @@ if (!is_null($events['events'])) {
         //textMessage
         $textMessageBuilder = new TextMessageBuilder($respMessage);
         $response = $bot->replyMessage($replyToken, $textMessageBuilder);
-        // ImageMessage
-        $TextMessageBuilder = new ImageMessageBuilder ($respMessageImg);
-        $response = $bot->replyMessage($replyToken,$textMesssageBuilder);
+    
         
     }
     
