@@ -6,6 +6,18 @@ $POST_HEADER = array('Content-Type: application/json', 'Authorization: Bearer ' 
 $request = file_get_contents('php://input');   // Get request content
 $request_array = json_decode($request, true);   // Decode JSON to Array
 
+// coin API
+$getData = json_decode(file_get_contents('https://api.coinmarketcap.com/v2/ticker/?limit=10'), TRUE);
+if(!empty($getData['data'])){
+    $priceList =[];
+    $priceListName =[];
+    foreach($getData['data'] as $val){
+    $priceList[$val['symbol']] = 'Current Price: ' . $val['quotes']['USD']['price'] . ' USD '; 
+    $priceListName[$val['name']] = 'Current Price: ' . $val['quotes']['USD']['price'] . ' USD '; 
+    }
+}
+
+// answer
 if (!is_null($request_array['events'])) {
     foreach ($request_array['events'] as $event) {
         $reply_message = '';
@@ -14,39 +26,147 @@ if (!is_null($request_array['events'])) {
             if( $event['message']['type'] == 'text' ) {
                 
                 $text = $event['message']['text'];
-                if( $text == 'สวัสดี') {
-                    $reply_message = 'สวัสดีนายท่าน ';
+                if( $text == 'Coin Price') {
                                 $data = [
                                 'to' => $event['source']['userId'],
                                 'messages' => [
                                 [
-                                'type' => 'flex', 
-                                'altText' => 'This is a Flex Message',
-                                'contents'  =>  [
-                                'type'  =>  'bubble',
-                                'hero'  =>  [
-                                'type'  =>  'image',
-                                'url'   =>  'https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_3_movie.png',
-                                'size'  =>  'full',
-                                'aspectRatio'   =>  '20:13',
-                                'aspectMode'    =>  'cover',
-                                'action'    =>  [
-                                    'type'  =>  'uri',
-                                    'uri'   =>  'https://bitkub.com'
-                                ]
-                            ],
-                            'body'  =>  [
-                                'type'  =>  'box',
-                                'layout'    =>  'horizontal',
-                                'contents'  =>  [
-                                    [
-                                        'type'  =>  'text',
-                                        'text'  =>  'Hello,'
-                                    ],
-                                    [
-                                        'type'  =>  'text',
-                                        'text'  =>  'World!'
-                                    ]
+                                'type'=> 'bubble',
+  'header'=> [
+    'type'=> 'box',
+    'layout'=> 'vertical',
+    'contents'=> [
+      [
+        'type'=> 'text',
+        'text'=> 'Coin Price',
+        'size'=> 'xl',
+        'weight'=> 'bold'
+      ]
+    ]
+  ],
+  'hero'=> [
+    'type'=> 'image',
+    'url'=> 'https=>//github.com/notrealinqx/fuckbot/blob/master/image.jpg',
+    'size'=> 'full',
+    'aspectRatio'=> '20=>13',
+    'aspectMode'=> 'cover'
+  ],
+  'body'=> [
+    'type'=> 'box',
+    'layout'=> 'vertical',
+    'spacing'=> 'md',
+    'contents'=> [
+      [
+        'type'=> 'separator',
+        'margin'=> 'lg'
+      ],
+      [
+        'type'=> 'box',
+        'layout'=> 'vertical',
+        'margin'=> 'lg',
+        'spacing'=> 'sm',
+        'contents'=> [
+          [
+            'type'=> 'box',
+            'layout'=> 'horizontal',
+            'spacing'=> 'sm',
+            'contents'=> [
+              [
+                'type'=> 'button',
+                'style'=> 'primary',
+                'action'=> [
+                  'type'=> 'postback',
+                  'label'=> 'BITCOIN',
+                  'displayText'=> 'Bitcoin',
+                  'data'=> 'BTC'
+                ]
+              ],
+              [
+                'type'=> 'button',
+                'style'=> 'primary',
+                'action'=> [
+                  'type'=> 'postback',
+                  'label'=> 'ETHEREUM',
+                  'displayText'=> 'ETHEREUM',
+                  'data'=> 'ETH'
+                ]
+              ]
+            ]
+          ],
+          [
+            'type'=> 'box',
+            'layout'=> 'horizontal',
+            'spacing'=> 'sm',
+            'contents'=> [
+              [
+                'type'=> 'button',
+                'style'=> 'primary',
+                'action'=> [
+                  'type'=> 'postback',
+                  'label'=> 'WANCOIN',
+                  'displayText'=> 'WANCOIN',
+                  'data'=> 'WANCOIN'
+                ]
+              ],
+              [
+                'type'=> 'button',
+                'style'=> 'primary',
+                'action'=> [
+                  'type'=> 'postback',
+                  'label'=> 'CARDANO',
+                  'displayText'=> 'CARDANO',
+                  'data'=> 'ADA'
+                ]
+              ]
+            ]
+          ],
+          [
+            'type'=> 'box',
+            'layout'=> 'horizontal',
+            'spacing'=> 'sm',
+            'contents'=> [
+              [
+                'type'=> 'button',
+                'style'=> 'primary',
+                'action'=> [
+                  'type'=> 'postback',
+                  'label'=> 'OMISEGO',
+                  'displayText'=> 'OMISEGO',
+                  'data'=> 'OMG'
+                ]
+              ],
+              [
+                'type'=> 'button',
+                'style'=> 'primary',
+                'action'=> [
+                  'type'=> 'postback',
+                  'label'=> 'RIPPLE',
+                  'displayText'=> 'RIPPLE',
+                  'data'=> 'XRP'
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ]
+  ],
+  'footer'=> [
+    'type'=> 'box',
+    'layout'=> 'vertical',
+    'contents'=> [
+      [
+        'type'=> 'button',
+        'margin'=> 'sm',
+        'action'=> [
+          'type'=> 'uri',
+          'label'=> 'CHECK OUT BITKUB MARKET',
+          'uri'=> 'https=>//www.bitkub.com/market'
+        ],
+        'style'=> 'secondary'
+      ]
+    ]
+  ]
                                 ]
                             ]
                             ]
