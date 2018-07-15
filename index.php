@@ -42,7 +42,9 @@ if (!is_null($request_array['events'])) {
                                 $data = [
                 'to' => $event['source']['userId'],
                 'messages' => 
-[[
+[
+
+[
   'type'=> 'bubble',
   'header'=> [
     'type'=> 'box',
@@ -179,6 +181,7 @@ if (!is_null($request_array['events'])) {
       ]
     ]
   ]
+]
 ]
 ];
 
