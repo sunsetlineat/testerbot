@@ -42,41 +42,153 @@ if (!is_null($request_array['events'])) {
                                 $data = [
                 'to' => $event['source']['userId'],
                 'messages' => [
-                    [
+                     [
                         'type' => 'flex', 
                         'altText' => 'This is a Flex Message',
                         'contents'  =>  [
-                            'type'  =>  'bubble',
-                            'hero'  =>  [
-                                'type'  =>  'image',
-                                'url'   =>  'https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_3_movie.png',
-                                'size'  =>  'full',
-                                'aspectRatio'   =>  '20:13',
-                                'aspectMode'    =>  'cover',
-                                'action'    =>  [
-                                    'type'  =>  'uri',
-                                    'uri'   =>  'https://bitkub.com'
-                                ]
-                            ],
-                            'body'  =>  [
-                                'type'  =>  'box',
-                                'layout'    =>  'horizontal',
-                                'contents'  =>  [
-                                    [
-                                        'type'  =>  'text',
-                                        'text'  =>  'Hello,'
-                                    ],
-                                    [
-                                        'type'  =>  'text',
-                                        'text'  =>  'World!'
-                                    ]
-                                ]
-                            ]
-                        ]
-                    ]
+
+[
+  'type'=> 'bubble',
+  'header'=> [
+    'type'=> 'box',
+    'layout'=> 'vertical',
+    'contents'=> [
+      [
+        'type'=> 'text',
+        'text'=> 'Coin Price',
+        'size'=> 'xl',
+        'weight'=> 'bold'
+      ]
+    ]
+  ],
+  'hero'=> [
+    'type'=> 'image',
+    'url'=> 'https=>//bitkubblockchain.com/wp-content/uploads/2018/01/line-menu-test.png',
+    'size'=> 'full',
+    'aspectRatio'=> '20=>13',
+    'aspectMode'=> 'cover'
+  ],
+  'body'=> [
+    'type'=> 'box',
+    'layout'=> 'vertical',
+    'spacing'=> 'md',
+    'contents'=> [
+      [
+        'type'=> 'separator',
+        'margin'=> 'lg'
+      ],
+      [
+        'type'=> 'box',
+        'layout'=> 'vertical',
+        'margin'=> 'lg',
+        'spacing'=> 'sm',
+        'contents'=> [
+          [
+            'type'=> 'box',
+            'layout'=> 'horizontal',
+            'spacing'=> 'sm',
+            'contents'=> [
+              [
+                'type'=> 'button',
+                'style'=> 'primary',
+                'action'=> [
+                  'type'=> 'postback',
+                  'label'=> 'BITCOIN',
+                  'displayText'=> 'Bitcoin',
+                  'data'=> 'BTC'
                 ]
+              ],
+              [
+                'type'=> 'button',
+                'style'=> 'primary',
+                'action'=> [
+                  'type'=> 'postback',
+                  'label'=> 'ETHEREUM',
+                  'displayText'=> 'ETHEREUM',
+                  'data'=> 'ETH'
+                ]
+              ]
+            ]
+          ],
+          [
+            'type'=> 'box',
+            'layout'=> 'horizontal',
+            'spacing'=> 'sm',
+            'contents'=> [
+              [
+                'type'=> 'button',
+                'style'=> 'primary',
+                'action'=> [
+                  'type'=> 'postback',
+                  'label'=> 'WANCOIN',
+                  'displayText'=> 'WANCOIN',
+                  'data'=> 'WANCOIN'
+                ]
+              ],
+              [
+                'type'=> 'button',
+                'style'=> 'primary',
+                'action'=> [
+                  'type'=> 'postback',
+                  'label'=> 'CARDANO',
+                  'displayText'=> 'CARDANO',
+                  'data'=> 'ADA'
+                ]
+              ]
+            ]
+          ],
+          [
+            'type'=> 'box',
+            'layout'=> 'horizontal',
+            'spacing'=> 'sm',
+            'contents'=> [
+              [
+                'type'=> 'button',
+                'style'=> 'primary',
+                'action'=> [
+                  'type'=> 'postback',
+                  'label'=> 'OMISEGO',
+                  'displayText'=> 'OMISEGO',
+                  'data'=> 'OMG'
+                ]
+              ],
+              [
+                'type'=> 'button',
+                'style'=> 'primary',
+                'action'=> [
+                  'type'=> 'postback',
+                  'label'=> 'RIPPLE',
+                  'displayText'=> 'RIPPLE',
+                  'data'=> 'XRP'
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ]
+  ],
+  'footer'=> [
+    'type'=> 'box',
+    'layout'=> 'vertical',
+    'contents'=> [
+      [
+        'type'=> 'button',
+        'margin'=> 'sm',
+        'action'=> [
+          'type'=> 'uri',
+          'label'=> 'CHECK OUT BITKUB MARKET',
+          'uri'=> 'https=>//www.bitkub.com/market'
+        ],
+        'style'=> 'secondary'
+      ]
+    ]
+  ]
+]
+]
+]
             ];
-            
+
                 $post_body = json_encode($data);
                 $send_result = send_reply_message($API_URL.'/push', $POST_HEADER, $post_body);
                 echo "Result: ".$send_result."\r\n";
