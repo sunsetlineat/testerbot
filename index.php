@@ -61,7 +61,7 @@ if (!is_null($request_array['events'])) {
                 'to' => $event['source']['userId'],
                 'messages' => 
 [
-    [
+[
   'type'=> 'bubble',
   'hero'=> [
     'type'=> 'image',
