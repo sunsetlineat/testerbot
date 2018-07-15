@@ -61,20 +61,8 @@ if (!is_null($request_array['events'])) {
                 'to' => $event['source']['userId'],
                 'messages' => 
 [
-[
+    [
   'type'=> 'bubble',
-  'header'=> [
-    'type'=> 'box',
-    'layout'=> 'vertical',
-    'contents'=> [
-      [
-        'type'=> 'text',
-        'text'=> 'Coin Price',
-        'size'=> 'xl',
-        'weight'=> 'bold'
-      ]
-    ]
-  ],
   'hero'=> [
     'type'=> 'image',
     'url'=> 'https=>//bitkubblockchain.com/wp-content/uploads/2018/01/line-menu-test.png',
@@ -107,7 +95,7 @@ if (!is_null($request_array['events'])) {
                 'style'=> 'primary',
                 'action'=> [
                   'type'=> 'postback',
-                  'label'=> 'BITCOIN',
+                  'label'=> 'BTC',
                   'displayText'=> 'Bitcoin',
                   'data'=> 'BTC'
                 ]
@@ -117,26 +105,9 @@ if (!is_null($request_array['events'])) {
                 'style'=> 'primary',
                 'action'=> [
                   'type'=> 'postback',
-                  'label'=> 'ETHEREUM',
-                  'displayText'=> 'ETHEREUM',
+                  'label'=> 'ETH',
+                  'displayText'=> 'ETH',
                   'data'=> 'ETH'
-                ]
-              ]
-            ]
-          ],
-          [
-            'type'=> 'box',
-            'layout'=> 'horizontal',
-            'spacing'=> 'sm',
-            'contents'=> [
-              [
-                'type'=> 'button',
-                'style'=> 'primary',
-                'action'=> [
-                  'type'=> 'postback',
-                  'label'=> 'WANCOIN',
-                  'displayText'=> 'WANCOIN',
-                  'data'=> 'WANCOIN'
                 ]
               ],
               [
@@ -144,9 +115,9 @@ if (!is_null($request_array['events'])) {
                 'style'=> 'primary',
                 'action'=> [
                   'type'=> 'postback',
-                  'label'=> 'CARDANO',
-                  'displayText'=> 'CARDANO',
-                  'data'=> 'ADA'
+                  'label'=> 'WAN',
+                  'displayText'=> 'WAN',
+                  'data'=> 'WAN'
                 ]
               ]
             ]
@@ -161,8 +132,18 @@ if (!is_null($request_array['events'])) {
                 'style'=> 'primary',
                 'action'=> [
                   'type'=> 'postback',
-                  'label'=> 'OMISEGO',
-                  'displayText'=> 'OMISEGO',
+                  'label'=> 'ADA',
+                  'displayText'=> 'ADA',
+                  'data'=> 'ADA'
+                ]
+              ],
+              [
+                'type'=> 'button',
+                'style'=> 'primary',
+                'action'=> [
+                  'type'=> 'postback',
+                  'label'=> 'OMG',
+                  'displayText'=> 'OMG',
                   'data'=> 'OMG'
                 ]
               ],
@@ -171,8 +152,8 @@ if (!is_null($request_array['events'])) {
                 'style'=> 'primary',
                 'action'=> [
                   'type'=> 'postback',
-                  'label'=> 'RIPPLE',
-                  'displayText'=> 'RIPPLE',
+                  'label'=> 'XRP',
+                  'displayText'=> 'XRP',
                   'data'=> 'XRP'
                 ]
               ]
