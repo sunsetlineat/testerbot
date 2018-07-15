@@ -41,12 +41,7 @@ if (!is_null($request_array['events'])) {
 
                                 $data = [
                 'to' => $event['source']['userId'],
-                'messages' => [
-                     [
-                        'type' => 'flex', 
-                        'altText' => 'This is a Flex Message',
-                        'contents'  =>  [
-
+                'messages' => 
 [
   'type'=> 'bubble',
   'header'=> [
@@ -184,10 +179,7 @@ if (!is_null($request_array['events'])) {
       ]
     ]
   ]
-]
-]
-]
-            ];
+];
 
                 $post_body = json_encode($data);
                 $send_result = send_reply_message($API_URL.'/push', $POST_HEADER, $post_body);
