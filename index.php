@@ -26,7 +26,7 @@ if (!is_null($request_array['events'])) {
                 $text = $event['message']['text'];
 
                 if(in_array(strtoupper($text),array_keys($priceList))){
-                    $temp = $event['message']['text'].' -> '.$priceList[strtoupper($event['message']['text'])];
+                    $temp = $text.' -> '.$priceList[strtoupper($text)];
 
                     $data = [
                         'to' => $event['source']['userId'],
