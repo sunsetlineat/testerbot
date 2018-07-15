@@ -10,10 +10,8 @@ $request_array = json_decode($request, true);   // Decode JSON to Array
 $getData = json_decode(file_get_contents('https://api.coinmarketcap.com/v2/ticker/?limit=10'), TRUE);
 if(!empty($getData['data'])){
     $priceList =[];
-    $priceListName =[];
     foreach($getData['data'] as $val){
     $priceList[$val['symbol']] = 'Current Price: ' . $val['quotes']['USD']['price'] . ' USD '; 
-    $priceListName[$val['name']] = 'Current Price: ' . $val['quotes']['USD']['price'] . ' USD '; 
     }
 }
 
@@ -27,12 +25,12 @@ if (!is_null($request_array['events'])) {
                 
                 $text = $event['message']['text'];
 
-                if(in_array(strtoupper($event['message']['text']),array_keys($priceList))){
+                if(in_array(strtoupper($text),array_keys($priceList))){
                     $temp = $event['message']['text'].' -> '.$priceList[strtoupper($event['message']['text'])];
 
                     $data = [
                         'to' => $event['source']['userId'],
-                        'message' => [['type' => 'text', 'text' => json_encode($temp)]] 
+                        'message' => [['type' => 'text', 'text' => $temp]] 
                             ];
                          $post_body = json_encode($data, JSON_UNESCAPED_UNICODE);
                          $send_result = send_reply_message($API_URL.'/reply', $POST_HEADER, $post_body);
