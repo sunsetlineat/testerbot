@@ -28,11 +28,11 @@ if (!is_null($request_array['events'])) {
                 $text = $event['message']['text'];
 
                 if(in_array(strtoupper($event['message']['text']),array_keys($priceList))){
-                    //$reply_message = $event['message']['text'].' -> '.$priceList[strtoupper($event['message']['text'])];
+                    $temp = $event['message']['text'].' -> '.$priceList[strtoupper($event['message']['text'])];
 
                     $data = [
                         'to' => $event['source']['userId'],
-                        'message' => [['type' => 'text', 'text' => json_encode($reply_message)]] 
+                        'message' => [['type' => 'text', 'text' => json_encode($temp)]] 
                             ];
                          $post_body = json_encode($data, JSON_UNESCAPED_UNICODE);
                          $send_result = send_reply_message($API_URL.'/reply', $POST_HEADER, $post_body);
