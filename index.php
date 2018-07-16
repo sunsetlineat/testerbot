@@ -32,7 +32,7 @@ if (!is_null($request_array['events'])) {
 
                     $temp = $priceList[strtoupper($text)];
                     $data = [
-                        'to' => $event['source']['userId'],
+                        'replyToken' => $reply_token,
                         'message' => [['type' => 'text', 'text' => $temp]] 
                             ];
                          $post_body = json_encode($data, JSON_UNESCAPED_UNICODE);
