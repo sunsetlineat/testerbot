@@ -22,7 +22,7 @@ if (!is_null($request_array['events'])) {
         'to' => $event['source']['userId'],
         'messages' => $json
     ];
-    $post_body = $data;
+    $post_body = json_encode($data);
     $send_result = send_reply_message($API_URL.'/push', $POST_HEADER, $post_body);
 }
 echo "OK";
