@@ -37,6 +37,7 @@ if (!is_null($request_array['events'])) {
             $post_body = json_encode($data, JSON_UNESCAPED_UNICODE);
             $send_result = send_reply_message($API_URL.'/reply', $POST_HEADER, $post_body);
 
+                    $reply_message = '-> '.$priceList[strtoupper($text)];
                     $temp = $priceList[strtoupper($text)];
                     $data = [
                         'to' => $event['source']['userId'],
