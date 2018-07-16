@@ -38,11 +38,17 @@ if (!is_null($request_array['events'])) {
                          $post_body = json_encode($data, JSON_UNESCAPED_UNICODE);
                          $send_result = send_reply_message($API_URL.'/reply', $POST_HEADER, $post_body);
 
+                  
                     $data = [
                     'replyToken' => $reply_token,
                     // 'messages' => [['type' => 'text', 'text' => $reply_message]]
-                    'messages' => [['type' => 'text', 'text' => json_encode($request_array)]]
-                            ];
+                    'messages' => [
+                            [
+                                'type' => 'text', 
+                                'text' => $event['source']['userId'] //json_encode($request_array)
+                            ]
+                        ]
+                    ];
                     $post_body = json_encode($data, JSON_UNESCAPED_UNICODE);
                     $send_result = send_reply_message($API_URL.'/reply', $POST_HEADER, $post_body);
 
@@ -54,7 +60,12 @@ if (!is_null($request_array['events'])) {
 
                      $data = [
                     'replyToken' => $reply_token,
-                     'messages' => [['type' => 'text', 'text' => json_encode($request_array)]]
+                     'messages' => [
+                            [
+                                'type' => 'text', 
+                                'text' => $event['source']['userId']//json_encode($request_array)
+                            ]
+                        ]
                     ];
                     $post_body = json_encode($data, JSON_UNESCAPED_UNICODE);
                     $send_result = send_reply_message($API_URL.'/reply', $POST_HEADER, $post_body);
