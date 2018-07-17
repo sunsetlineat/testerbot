@@ -22,8 +22,8 @@ if (!is_null($request_array['events'])) {
     
     $data = [
         'to' => $event['source']['userId'],
-        'messages' =>[ 'type' => 'text',
-                'text' => json_encode($priceList) ]
+        'messages' =>[[ 'type' => 'text',
+                'text' => json_encode($priceList) ]]
     ];
     $post_body = json_encode($data);
     $send_result = send_reply_message($API_URL.'/push', $POST_HEADER, $post_body);
