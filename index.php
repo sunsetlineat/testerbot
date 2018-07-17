@@ -66,7 +66,7 @@ if ( sizeof($request_array['events']) > 0 ) {
             if( $event['message']['type'] == 'text' ) {
                 // Type Text
                 $text = $event['message']['text'];
-                if(in_array(strtoupper($text), array_keys($priceList)) {
+                if(in_array(strtoupper($text), array_keys($priceList))) {
                     $temp = $priceList[strtoupper($text)];
                     $data = [
                         'replyToken' => $reply_token,
