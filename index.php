@@ -20,18 +20,18 @@ if (!is_null($request_array['events'])) {
         foreach ($events['events'] as $event) {
             if ($event['type'] == 'message' && $event['message']['type'] == 'text') {
                  $text = $event['message']['text'];
+                 $reply_token = $event['replyToken'];
 
                 if(in_array(strtoupper($text), array_keys($priceList) ) ) {
 
-                        $temp = $priceList[strtoupper($text)];
-                        $data = [
+                    $temp = $priceList[strtoupper($text)];
+                    $data = [
                         'replyToken' => $reply_token,
                         // 'messages' => [['type' => 'text', 'text' => $reply_message]]
                         'messages' => [['type' => 'text', 'text' => json_encode($temp)]]
-                        ];
-                $post_body = json_encode($data, JSON_UNESCAPED_UNICODE);
-                $send_result = send_reply_message($API_URL.'/reply', $POST_HEADER, $post_body);
-
+                    ];
+                    $post_body = json_encode($data, JSON_UNESCAPED_UNICODE);
+                    $send_result = send_reply_message($API_URL.'/reply', $POST_HEADER, $post_body);
                 }
 
                 if( $text == 'Coin Price') {
@@ -41,12 +41,11 @@ if (!is_null($request_array['events'])) {
                     echo "Result: ".$send_result."\r\n";
                 }
 
-                $temp = $priceList[strtoupper($text)];
-                        $data = [
-                        'replyToken' => $reply_token,
-                        // 'messages' => [['type' => 'text', 'text' => $reply_message]]
-                        'messages' => [['type' => 'text', 'text' => json_encode($request_array)]]
-                        ];
+                $data = [
+                    'replyToken' => $reply_token,
+                    // 'messages' => [['type' => 'text', 'text' => $reply_message]]
+                    'messages' => [['type' => 'text', 'text' => json_encode($request_array)]]
+                ];
                 $post_body = json_encode($data, JSON_UNESCAPED_UNICODE);
                 $send_result = send_reply_message($API_URL.'/reply', $POST_HEADER, $post_body);
             }
