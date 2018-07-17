@@ -17,16 +17,18 @@ if(!empty($getData['data'])){
 
 // answer
 if (!is_null($request_array['events'])) {
-
+        foreach ($events['events'] as $event) {
+            if ($event['type'] == 'message' && $event['message']['type'] == 'text') {
+    
     $data = [
         'to' => $event['source']['userId'],
         'messages' =>[ 'type' => 'text',
-                'text' => $priceList
-  
-  ]
+                'text' => json_encode($priceList) ]
     ];
     $post_body = json_encode($data);
     $send_result = send_reply_message($API_URL.'/push', $POST_HEADER, $post_body);
+            }
+        }
 }
 echo "OK";
 function send_reply_message($url, $post_header, $post_body)
