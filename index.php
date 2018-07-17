@@ -15,49 +15,6 @@ if(!empty($getData['data'])){
     }
 }
 
-// answer
-// if (!is_null($request_array['events'])) {
-//         foreach ($events['events'] as $event) {
-
-//             $text = '';
-//             $reply_token = $event['replyToken'];
-
-//             if ($event['type'] == 'message') {
-//                 if($event['message']['type'] == 'text') {
-//                     $text = $event['message']['text'];
-//                     $data = [
-//                         'replyToken' => $reply_token,
-//                         // 'messages' => [['type' => 'text', 'text' => $reply_message]]
-//                         'messages' => [['type' => 'text', 'text' => json_encode($request_array)]]
-//                     ];
-
-//                     $post_body = json_encode($data, JSON_UNESCAPED_UNICODE);
-//                     $send_result = send_reply_message($API_URL.'/reply', $POST_HEADER, $post_body);
-
-//                 }
-
-//                 // if(in_array(strtoupper($text), array_keys($priceList) ) ) {
-
-//                 //     $temp = $priceList[strtoupper($text)];
-//                 //     $data = [
-//                 //         'replyToken' => $reply_token,
-//                 //         // 'messages' => [['type' => 'text', 'text' => $reply_message]]
-//                 //         'messages' => [['type' => 'text', 'text' => json_encode($temp)]]
-//                 //     ];
-//                 //     $post_body = json_encode($data, JSON_UNESCAPED_UNICODE);
-//                 //     $send_result = send_reply_message($API_URL.'/reply', $POST_HEADER, $post_body);
-//                 // }
-
-//                 // if( $text == 'Coin Price') {
-//                 //     $data = '{"to":"'. $event['source']['userId'] .'","messages":[{"type":"flex","altText":"This is a Flex Message","contents":{"type":"bubble","hero":{"type":"image","url":"https://bitkubblockchain.com/wp-content/uploads/2018/01/line-menu-test.png","size":"full","aspectRatio":"20:13","aspectMode":"cover"},"body":{"type":"box","layout":"vertical","spacing":"md","contents":[{"type":"box","layout":"vertical","margin":"lg","spacing":"sm","contents":[{"type":"text","text":"CLICK TO CHECK CURRENT PRICE","weight":"bold","color":"#1DB446","size":"sm"}]},{"type":"separator","margin":"lg"},{"type":"box","layout":"vertical","margin":"lg","spacing":"sm","contents":[{"type":"box","layout":"horizontal","spacing":"sm","contents":[{"type":"button","style":"primary","action":{"type":"postback","label":"BTC","displayText":"BTC","data":"BTC"}},{"type":"button","style":"primary","action":{"type":"postback","label":"ETH","displayText":"ETH","data":"ETH"}},{"type":"button","style":"primary","action":{"type":"postback","label":"WAN","displayText":"WAN","data":"WAN"}}]},{"type":"box","layout":"horizontal","spacing":"sm","contents":[{"type":"button","style":"primary","action":{"type":"postback","label":"ADA","displayText":"ADA","data":"ADA"}},{"type":"button","style":"primary","action":{"type":"postback","label":"OMG","displayText":"OMG","data":"OMG"}},{"type":"button","style":"primary","action":{"type":"postback","label":"XRP","displayText":"XRP","data":"XRP"}}]}]}]},"footer":{"type":"box","layout":"vertical","contents":[{"type":"button","margin":"sm","action":{"type":"uri","label":"CHECK OUT BITKUB MARKET","uri":"https://www.bitkub.com/market"},"style":"secondary"}]}}}]}';
-//                 //     $post_body = $data;
-//                 //     $send_result = send_reply_message($API_URL.'/push', $POST_HEADER, $post_body);
-//                 //     echo "Result: ".$send_result."\r\n";
-//                 // }
-//             }
-//         }
-// }
-
 if ( sizeof($request_array['events']) > 0 ) {
     foreach ($request_array['events'] as $event) {
         $reply_message = '';
@@ -88,19 +45,13 @@ if ( sizeof($request_array['events']) > 0 ) {
             // $reply_message = 'ระบบได้รับ Event '.ucfirst($event['type']).' ของคุณแล้ว';
         }
 
-        // if( strlen($reply_message) > 0 ) {
-        //     //$reply_message = iconv("tis-620","utf-8",$reply_message);
-        //     $data = [
-        //         'replyToken' => $reply_token,
-        //         // 'messages' => [['type' => 'text', 'text' => $reply_message]]
-        //         'messages' => [['type' => 'text', 'text' => json_encode($request_array)]]
-        //     ];
-        //     $post_body = json_encode($data, JSON_UNESCAPED_UNICODE);
-        //     $send_result = send_reply_message($API_URL.'/reply', $POST_HEADER, $post_body);
-
-
-        //     echo "Result: ".$send_result."\r\n";
-        // }
+        $data = [
+            'replyToken' => $reply_token,
+            // 'messages' => [['type' => 'text', 'text' => $reply_message]]
+            'messages' => [[ 'type' => 'text', 'text' => json_encode($request_array) ]]
+        ];
+        $post_body = json_encode($data, JSON_UNESCAPED_UNICODE);
+        $send_result = send_reply_message($API_URL.'/reply', $POST_HEADER, $post_body);
     }
 }
 echo "OK";
