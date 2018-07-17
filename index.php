@@ -20,14 +20,6 @@ if ( sizeof($request_array['events']) > 0 ) {
         $reply_message = '';
         $reply_token = $event['replyToken'];
 
-        // $data = [
-        //     'replyToken' => $reply_token,
-        //     // 'messages' => [['type' => 'text', 'text' => $reply_message]]
-        //     'messages' => [[ 'type' => 'text', 'text' => json_encode($request_array) ]]
-        // ];
-        // $post_body = json_encode($data, JSON_UNESCAPED_UNICODE);
-        // $send_result = send_reply_message($API_URL.'/reply', $POST_HEADER, $post_body);
-
 
         if ( $event['type'] == 'message' ) {
             if( $event['message']['type'] == 'text' ) {
@@ -48,31 +40,30 @@ if ( sizeof($request_array['events']) > 0 ) {
                     $send_result = send_reply_message($API_URL.'/push', $POST_HEADER, $post_body);
                 }
             } else { 
-                // $reply_message = 'ระบบได้รับ '.ucfirst($event['message']['type']).' ของคุณแล้ว';
+              
             }
-        } elseif( $event['type'] == 'postback') {
-            $text = $event['postback']['data'];
-            if(in_array(strtoupper($text), array_keys($priceList))) {
-                $temp = $priceList[strtoupper($text)];
-                $data = [
-                    'replyToken' => $reply_token,
-                    // 'messages' => [['type' => 'text', 'text' => $reply_message]]
-                    'messages' => [[ 'type' => 'text', 'text' => $temp ]]
-                ];
-            }else {
-                $data = [
-                    'replyToken' => $reply_token,
-                    // 'messages' => [['type' => 'text', 'text' => $reply_message]]
-                    'messages' => [[ 'type' => 'text', 'text' => 'Not Founds' ]]
-                ];
-            }
+                } elseif( $event['type'] == 'postback') {
+                        $text = $event['postback']['data'];
+            
+                    if(in_array(strtoupper($text), array_keys($priceList))) {
+                        $temp = $priceList[strtoupper($text)];
+                            $data = [
+                                'replyToken' => $reply_token,
+                                'messages' => [[ 'type' => 'text', 'text' => $temp ]]
+                            ];
+                        }else {
+                            $data = [
+                                'replyToken' => $reply_token,
+                                'messages' => [[ 'type' => 'text', 'text' => 'Not Found' ]]
+                            ] ;
+                }
 
             $post_body = json_encode($data, JSON_UNESCAPED_UNICODE);
             $send_result = send_reply_message($API_URL.'/reply', $POST_HEADER, $post_body);
-        } else {
-            // Any Type
-            // $reply_message = 'ระบบได้รับ Event '.ucfirst($event['type']).' ของคุณแล้ว';
-        }
+            
+            } else {
+            
+            }
     }
 }
 echo "OK";
