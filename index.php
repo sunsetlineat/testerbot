@@ -18,8 +18,8 @@ $params = array (
 'notiTime' =>time('hh:mm:ss')
 );
 
-$coinNotification = $connection->prepare('INSERT INTO settingTime(userID,notiTime) VALUES (:userID, :notiTime)');
-$coinNotification->execute($params);
+$statement = $connection->prepare('INSERT INTO settingTime(userID,notiTime) VALUES (:userID, :notiTime)');
+$result = $statement->execute($params);
 
 // coin API
 $getData = json_decode(file_get_contents('https://api.coinmarketcap.com/v2/ticker/?limit=10'), TRUE);
