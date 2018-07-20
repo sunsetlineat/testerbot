@@ -13,13 +13,13 @@ $user = 'wesfrycfmkpxwx';
 $pass = 'ff7f9081467a3c7deceef1ff58b70b6d24317fee491f077eec63f2a49dff0eaa'; 
 $connection = new PDO("pgsql:host=$host;dbname=$dbname", $user, $pass);
 
-$params = array (
-    'userID'    =>  $event['source']['userID'],
-    'notiTime'  =>  $time('hh:mm:ss')
-);
+// $params = array (
+//     'userID'    =>  $event['source']['userID'],
+//     'notiTime'  =>  $time('hh:mm:ss')
+// );
 
-$statement = $connection->prepare('INSERT INTO settingTime(userID,notiTime) VALUES (:userID, :notiTime)');
-$result = $statement->execute($params);
+// $statement = $connection->prepare('INSERT INTO settingTime(userID,notiTime) VALUES (:userID, :notiTime)');
+// $result = $statement->execute($params);
 
 
 // coin API
