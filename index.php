@@ -76,10 +76,19 @@ if ( sizeof($request_array['events']) > 0 ) {
                                 'messages' => [[ 'type' => 'text', 'text' => $temp ]]
                             ];
                         }elseif($text=='SET NOTIFICATION TIME'){
-                             $data = '{"to":"'. $event['source']['userId'] .'","messages":[{"type":"flex","altText":"This is a Flex Message","contents":{"type":"bubble","body":{"type":"box","layout":"vertical","contents":[{"type":"text","text":"SET NOTIFICATION TIME","weight":"bold","color":"#1DB446","size":"sm"}]},"footer":{"type":"box","layout":"vertical","spacing":"sm","contents":[{"type":"button","style":"primary","action":{"type":"postback","label":"EVERY 30 MINUTES","displayText":"EVERY 30 MINUTES","data":"EVERY 30 MINUTES"}},{"type":"button","style":"primary","action":{"type":"postback","label":"EVERY 1 HOUR","displayText":"EVERY 1 HOUR","data":"EVERY 1 HOUR"}},{"type":"button","style":"primary","action":{"type":"postback","label":"EVERY DAY","displayText":"EVERY DAY","data":"EVERY DAY"}},{"type":"spacer","size":"sm"}],"flex":0}}}]}';
-                    $post_body = $data;
-                    $send_result = send_reply_message($API_URL.'/push', $POST_HEADER, $post_body);
 
+                            $data = '{"to":"'. $event['source']['userId'] .'","messages":[{"type":"flex","altText":"This is a Flex Message","contents":{"type":"bubble","body":{"type":"box","layout":"vertical","contents":[{"type":"text","text":"SET NOTIFICATION TIME","weight":"bold","color":"#1DB446","size":"sm"}]},"footer":{"type":"box","layout":"vertical","spacing":"sm","contents":[{"type":"button","style":"primary","action":{"type":"postback","label":"EVERY 30 MINUTES","displayText":"EVERY 30 MINUTES","data":"EVERY 30 MINUTES"}},{"type":"button","style":"primary","action":{"type":"postback","label":"EVERY 1 HOUR","displayText":"EVERY 1 HOUR","data":"EVERY 1 HOUR"}},{"type":"button","style":"primary","action":{"type":"postback","label":"EVERY DAY","displayText":"EVERY DAY","data":"EVERY DAY"}},{"type":"spacer","size":"sm"}],"flex":0}}}]}';
+                            $post_body = $data;
+                            $send_result = send_reply_message($API_URL.'/push', $POST_HEADER, $post_body);
+
+                        }elseif($text=='EVERY 30 MINUTES'){
+
+
+
+                        }elseif($text=='EVERY 1 HOUR'){
+
+
+                        }elseif($text=='EVERY DAY'){
 
 
                         }else {
