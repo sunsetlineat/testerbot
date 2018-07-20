@@ -82,20 +82,35 @@ if ( sizeof($request_array['events']) > 0 ) {
                             $send_result = send_reply_message($API_URL.'/push', $POST_HEADER, $post_body);
 
                         }elseif($text=='EVERY 30 MINUTES'){
+                $params = array (
+                //     'userID'    =>  $event['source']['userID'],
+                //     'notiTime'  =>  $time('hh:mm:ss')
+                // );
 
-
+                // $statement = $connection->prepare('INSERT INTO settingTime(userID,notiTime) VALUES (:userID, :notiTime)');
+                // $result = $statement->execute($params);
+                           $data = [
+                                'replyToken' => $reply_token,
+                                'messages' => [[ 'type' => 'text', 'text' => 'Just set notification time : every 30 minutes' ]]
+                            ];   
 
                         }elseif($text=='EVERY 1 HOUR'){
-
+                            $data = [
+                                'replyToken' => $reply_token,
+                                'messages' => [[ 'type' => 'text', 'text' => 'Just set notification time : every 1 hour' ]]
+                            ];
 
                         }elseif($text=='EVERY DAY'){
 
-
+                            $data = [
+                                'replyToken' => $reply_token,
+                                'messages' => [[ 'type' => 'text', 'text' => 'Just set notification time : every day' ]]
+                            ];
                         }else {
                             $data = [
                                 'replyToken' => $reply_token,
                                 'messages' => [[ 'type' => 'text', 'text' => 'Not Found' ]]
-                            ] ;
+                            ];
                 }
 
             $post_body = json_encode($data, JSON_UNESCAPED_UNICODE);
