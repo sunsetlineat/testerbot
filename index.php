@@ -91,20 +91,20 @@ if ( sizeof($request_array['events']) > 0 ) {
                 // $result = $statement->execute($params);
                            $data = [
                                 'replyToken' => $reply_token,
-                                'messages' => [[ 'type' => 'text', 'text' => 'Just set notification time : every 30 minutes' ]]
+                                'messages' => [[ 'type' => 'text', 'text' => 'Set notification time : every 30 minutes' ]]
                             ];   
 
                         }elseif($text=='EVERY 1 HOUR'){
                             $data = [
                                 'replyToken' => $reply_token,
-                                'messages' => [[ 'type' => 'text', 'text' => 'Just set notification time : every 1 hour' ]]
+                                'messages' => [[ 'type' => 'text', 'text' => 'Set notification time : every 1 hour' ]]
                             ];
 
                         }elseif($text=='EVERY DAY'){
 
                             $data = [
                                 'replyToken' => $reply_token,
-                                'messages' => [[ 'type' => 'text', 'text' => 'Just set notification time : every day' ]]
+                                'messages' => [[ 'type' => 'text', 'text' => 'Set notification time : every day' ]]
                             ];
                         }else {
                             $data = [
