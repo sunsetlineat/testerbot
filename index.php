@@ -82,7 +82,7 @@ if ( sizeof($request_array['events']) > 0 ) {
                             $send_result = send_reply_message($API_URL.'/push', $POST_HEADER, $post_body);
 
                         }elseif($text=='EVERY 30 MINUTES'){
-                $params = array (
+                //$params = array (
                 //     'userID'    =>  $event['source']['userID'],
                 //     'notiTime'  =>  $time('hh:mm:ss')
                 // );
