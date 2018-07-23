@@ -22,7 +22,9 @@ $connection = new PDO("pgsql:host=$host;dbname=$dbname", $user, $pass);
 // $statement = $connection->prepare('INSERT INTO settingTime(userID,notiTime) VALUES (:userID, :notiTime)');
 // $result = $statement->execute($params);
 
-
+if($connection){
+    echo "Connected ".$connection;
+}
 // coin API
 $getData = json_decode(file_get_contents('https://api.coinmarketcap.com/v2/ticker/?limit=10'), TRUE);
 if(!empty($getData['data'])){
