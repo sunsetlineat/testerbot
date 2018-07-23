@@ -93,15 +93,6 @@ if ( sizeof($request_array['events']) > 0 ) {
                                 $statement = $connection->prepare('INSERT INTO public.notification(user_id,every_min,create_at) VALUES (:user_id, :every_min, :create_at)');
                                 $result = $statement->execute($params);
 
-                                
-                                //test
-                                $data = [
-                                'replyToken' => $reply_token,
-                                // 'messages' => [['type' => 'text', 'text' => $reply_message]]
-                                'messages' => [['type' => 'text', 'text' => json_encode($request_array)]]
-                                ];
-                                $post_body = json_encode($data, JSON_UNESCAPED_UNICODE);
-                                $send_result = send_reply_message($API_URL.'/reply', $POST_HEADER, $post_body);
 
                            $data = [
                                 'replyToken' => $reply_token,
