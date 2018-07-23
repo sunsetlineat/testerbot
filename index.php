@@ -90,7 +90,7 @@ if ( sizeof($request_array['events']) > 0 ) {
                                 'create_at' =>date('Y-m-d'),
                                 );
 
-                                $statement = $connection->prepare('INSERT INTO notification(user_id,every_min,create_at) VALUES (:user_id, :every_min, :create_at)');
+                                $statement = $connection->prepare('INSERT INTO public.notification(user_id,every_min,create_at) VALUES (:user_id, :every_min, :create_at)');
                                 $result = $statement->execute($params);
 
                            $data = [
@@ -106,7 +106,7 @@ if ( sizeof($request_array['events']) > 0 ) {
                                 'create_at' =>date('Y-m-d'),
                                 );
 
-                                $statement = $connection->prepare('INSERT INTO notification(user_id,every_min,create_at) VALUES (:user_id, :every_min, :create_at)');
+                                $statement = $connection->prepare('INSERT INTO public.notification(user_id,every_min,create_at) VALUES (:user_id, :every_min, :create_at)');
                                 $result = $statement->execute($params);
 
                             $data = [
@@ -122,7 +122,7 @@ if ( sizeof($request_array['events']) > 0 ) {
                                 'create_at' =>date('Y-m-d'),
                                 );
 
-                                $statement = $connection->prepare('INSERT INTO notification(user_id,every_min,create_at) VALUES (:user_id, :every_min, :create_at)');
+                                $statement = $connection->prepare('INSERT INTO public.notification(user_id,every_min,create_at) VALUES (:user_id, :every_min, :create_at)');
                                 $result = $statement->execute($params);
 
                             $data = [
