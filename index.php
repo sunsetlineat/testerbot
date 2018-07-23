@@ -8,12 +8,13 @@ $request_array = json_decode($request, true);   // Decode JSON to Array
 
 //database
 $host = 'ec2-54-235-75-214.compute-1.amazonaws.com'; 
-$dbname = 'd3h5p6c9frv0nc'; 
+$dbname = 'd3h5p6c9frv0nc';
+$port = '5432'; 
 $user = 'wesfrycfmkpxwx'; 
 $pass = 'ff7f9081467a3c7deceef1ff58b70b6d24317fee491f077eec63f2a49dff0eaa'; 
-$connection = new PDO("pgsql:host=$host;dbname=$dbname", $user, $pass);
-//var_dump('test');
-//exit();
+$connection = new PDO("pgsql:host=$host;dbname=$dbname;user=$user;password=$pass;port=$port");
+
+
 // $params = array (
 //     'userID'    =>  $event['source']['userID'],
 //     'notiTime'  =>  $time('hh:mm:ss')
