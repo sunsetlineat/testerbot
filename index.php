@@ -24,7 +24,7 @@ $connection = new PDO("pgsql:host=$host;dbname=$dbname;user=$user;password=$pass
 // $result = $statement->execute($params);
 
 if($connection){
-    echo "Connected ".$connection;
+    echo "Connected ";
 }
 // coin API
 $getData = json_decode(file_get_contents('https://api.coinmarketcap.com/v2/ticker/?limit=10'), TRUE);
