@@ -86,7 +86,7 @@ if ( sizeof($request_array['events']) > 0 ) {
                                 $params = array (
                                 'user_id'    =>  $event['source']['userID'],
                                 'every_min'  =>  '30',
-                                'create_at' =>date('Y-m-d')
+                                'create_at' =>date('Y-m-d'),
                                 );
 
                                 $statement = $connection->prepare('INSERT INTO notification(user_id,every_min,create_at) VALUES (:user_id, :every_min, :create_at)');
@@ -98,11 +98,11 @@ if ( sizeof($request_array['events']) > 0 ) {
                             ];   
 
                         }elseif($text=='EVERY 1 HOUR'){
-                            
+
                                 $params = array (
                                 'user_id'    =>  $event['source']['userID'],
                                 'every_min'  =>  '60',
-                                'create_at' =>date('Y-m-d')
+                                'create_at' =>date('Y-m-d'),
                                 );
 
                                 $statement = $connection->prepare('INSERT INTO notification(user_id,every_min,create_at) VALUES (:user_id, :every_min, :create_at)');
@@ -118,7 +118,7 @@ if ( sizeof($request_array['events']) > 0 ) {
                                 $params = array (
                                 'user_id'    =>  $event['source']['userID'],
                                 'every_min'  =>  '1440',
-                                'create_at' =>date('Y-m-d')
+                                'create_at' =>date('Y-m-d'),
                                 );
 
                                 $statement = $connection->prepare('INSERT INTO notification(user_id,every_min,create_at) VALUES (:user_id, :every_min, :create_at)');
