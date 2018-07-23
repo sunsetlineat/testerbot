@@ -7,11 +7,11 @@ $request = file_get_contents('php://input');   // Get request content
 $request_array = json_decode($request, true);   // Decode JSON to Array
 
 //database
-$host = 'ec2-54-235-75-214.compute-1.amazonaws.com'; 
-$dbname = 'd3h5p6c9frv0nc';
+$host = 'ec2-23-21-238-28.compute-1.amazonaws.com'; 
+$dbname = 'd4o7346gg51rmp';
 $port = '5432'; 
-$user = 'wesfrycfmkpxwx'; 
-$pass = 'ff7f9081467a3c7deceef1ff58b70b6d24317fee491f077eec63f2a49dff0eaa'; 
+$user = 'uokndosffcykht'; 
+$pass = 'd0df32da93b1da05f04b071e6109274cbde9c42434ae8892af97bf429177fd8c'; 
 $connection = new PDO("pgsql:host=$host;dbname=$dbname;user=$user;password=$pass;port=$port");
 
 
