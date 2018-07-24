@@ -7,12 +7,12 @@ $request = file_get_contents('php://input');   // Get request content
 $request_array = json_decode($request, true);   // Decode JSON to Array
 
 //database
-$host = 'ec2-23-21-238-28.compute-1.amazonaws.com'; 
-$dbname = 'd4o7346gg51rmp';
-$port = '5432'; 
-$user = 'uokndosffcykht'; 
-$pass = 'd0df32da93b1da05f04b071e6109274cbde9c42434ae8892af97bf429177fd8c'; 
-$connection = new PDO("pgsql:host=$host;dbname=$dbname;user=$user;password=$pass;port=$port");
+//$host = 'ec2-23-21-238-28.compute-1.amazonaws.com'; 
+//$dbname = 'd4o7346gg51rmp';
+//$port = '5432'; 
+//$user = 'uokndosffcykht'; 
+//$pass = 'd0df32da93b1da05f04b071e6109274cbde9c42434ae8892af97bf429177fd8c'; 
+//$connection = new PDO("pgsql:host=$host;dbname=$dbname;user=$user;password=$pass;port=$port");
 
 
 // $params = array (
@@ -85,54 +85,6 @@ if ( sizeof($request_array['events']) > 0 ) {
                             $post_body = $data;
                             $send_result = send_reply_message($API_URL.'/push', $POST_HEADER, $post_body);
 
-                        }elseif($text=='EVERY 30 MINUTES'){
-
-                                $params = array (
-                                'user_id'    =>  $event['source']['userID'],
-                                'every_min'  =>  '30',
-                                'create_at' =>date('Y-m-d'),
-                                );
-
-                                $statement = $connection->prepare('INSERT INTO public.notification(user_id,every_min,create_at) VALUES (:user_id, :every_min, :create_at)');
-                                $result = $statement->execute($params);
-
-
-                           $data = [
-                                'replyToken' => $reply_token,
-                                'messages' => [[ 'type' => 'text', 'text' => 'Set notification time : every 30 minutes' ]]
-                            ];   
-
-                        }elseif($text=='EVERY 1 HOUR'){
-
-                                $params = array (
-                                'user_id'    =>  $event['source']['userID'],
-                                'every_min'  =>  '60',
-                                'create_at' =>date('Y-m-d'),
-                                );
-
-                                $statement = $connection->prepare('INSERT INTO public.notification(user_id,every_min,create_at) VALUES (:user_id, :every_min, :create_at)');
-                                $result = $statement->execute($params);
-
-                            $data = [
-                                'replyToken' => $reply_token,
-                                'messages' => [[ 'type' => 'text', 'text' => 'Set notification time : every 1 hour' ]]
-                            ];
-
-                        }elseif($text=='EVERY DAY'){
-
-                                $params = array (
-                                'user_id'    =>  $event['source']['userID'],
-                                'every_min'  =>  '1440',
-                                'create_at' =>date('Y-m-d'),
-                                );
-
-                                $statement = $connection->prepare('INSERT INTO public.notification(user_id,every_min,create_at) VALUES (:user_id, :every_min, :create_at)');
-                                $result = $statement->execute($params);
-
-                            $data = [
-                                'replyToken' => $reply_token,
-                                'messages' => [[ 'type' => 'text', 'text' => 'Set notification time : every day' ]]
-                            ];
                         }else {
                             $data = [
                                 'replyToken' => $reply_token,
