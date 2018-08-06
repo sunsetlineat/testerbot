@@ -80,7 +80,7 @@ if ( sizeof($request_array['events']) > 0 ) {
                             },
                             {
                                 "type": "text",
-                                "text": "categories",
+                                "text": "categories กรุณาเลือกหมวดหมู่คำถาม",
                                 "size": "xs",
                                 "color": "#aaaaaa",
                                 "wrap": true
