@@ -27,7 +27,7 @@ if($connection){
     echo "Connected ";
 }
 // coin API
-$getData = json_decode(file_get_contents('https://api.coinmarketcap.com/v2/ticker/?limit=10'), TRUE);
+$getData = json_decode(file_get_contents('https://api.coinmarketcap.com/v2/ticker/'), TRUE);
 if(!empty($getData['data'])){
     $priceList =[];
     foreach($getData['data'] as $val){
@@ -40,7 +40,6 @@ if ( sizeof($request_array['events']) > 0 ) {
         $reply_token = $event['replyToken'];
         if ( $event['type'] == 'message' ) {
             if( $event['message']['type'] == 'text' ) {
-                // Type Text
                 $text = $event['message']['text'];
                 if(in_array(strtoupper($text), array_keys($priceList))) {
                     $temp = $priceList[strtoupper($text)];
@@ -53,6 +52,7 @@ if ( sizeof($request_array['events']) > 0 ) {
                     $send_result = send_reply_message($API_URL.'/reply', $POST_HEADER, $post_body);
                 } elseif($text=='Bitkub Menu'){
                     $data = '{"to":"'. $event['source']['userId'] .'","messages":[{"type":"flex","altText":"This is a Flex Message","contents":{
+                    {
   "type": "bubble",
   "hero": {
     "type": "image",
@@ -100,7 +100,7 @@ if ( sizeof($request_array['events']) > 0 ) {
         "contents": [
           {
             "type": "box",
-            "layout": "horizontal",
+            "layout": "vertical",
             "spacing": "sm",
             "contents": [
               {
@@ -108,9 +108,9 @@ if ( sizeof($request_array['events']) > 0 ) {
                 "style": "primary",
                 "action": {
                   "type": "postback",
-                  "label": "BTC",
-                  "displayText": "Bitcoin",
-                  "data": "BTC"
+                  "label": "ข้อมูลทั่วไป",
+                  "displayText": "ข้อมูลทั่วไป",
+                  "data": "ข้อมูลทั่วไป"
                 }
               },
               {
@@ -118,9 +118,9 @@ if ( sizeof($request_array['events']) > 0 ) {
                 "style": "primary",
                 "action": {
                   "type": "postback",
-                  "label": "ETH",
-                  "displayText": "ETH",
-                  "data": "ETH"
+                  "label": "เริ่มต้นการใช้งาน",
+                  "displayText": "เริ่มต้นการใช้งาน",
+                  "data": "เริ่มต้นการใช้งาน"
                 }
               },
               {
@@ -128,16 +128,16 @@ if ( sizeof($request_array['events']) > 0 ) {
                 "style": "primary",
                 "action": {
                   "type": "postback",
-                  "label": "WAN",
-                  "displayText": "WAN",
-                  "data": "WAN"
+                  "label": "ความปลอดภัย",
+                  "displayText": "ความปลอดภัย",
+                  "data": "ความปลอดภัย"
                 }
               }
             ]
           },
           {
             "type": "box",
-            "layout": "horizontal",
+            "layout": "vertical",
             "spacing": "sm",
             "contents": [
               {
@@ -145,9 +145,9 @@ if ( sizeof($request_array['events']) > 0 ) {
                 "style": "primary",
                 "action": {
                   "type": "postback",
-                  "label": "ADA",
-                  "displayText": "ADA",
-                  "data": "ADA"
+                  "label": "ความรู้เกี่ยวกับการเทรด",
+                  "displayText": "ความรู้เกี่ยวกับการเทรด",
+                  "data": "ความรู้เกี่ยวกับการเทรด"
                 }
               },
               {
@@ -155,9 +155,9 @@ if ( sizeof($request_array['events']) > 0 ) {
                 "style": "primary",
                 "action": {
                   "type": "postback",
-                  "label": "OMG",
-                  "displayText": "OMG",
-                  "data": "OMG"
+                  "label": "จัดการบัญชี",
+                  "displayText": "จัดการบัญชี",
+                  "data": "จัดการบัญชี"
                 }
               },
               {
@@ -165,9 +165,9 @@ if ( sizeof($request_array['events']) > 0 ) {
                 "style": "primary",
                 "action": {
                   "type": "postback",
-                  "label": "XRP",
-                  "displayText": "XRP",
-                  "data": "XRP"
+                  "label": "ช่วยเหลือ",
+                  "displayText": "ช่วยเหลือ",
+                  "data": "ช่วยเหลือ"
                 }
               }
             ]
@@ -278,13 +278,6 @@ if ( sizeof($request_array['events']) > 0 ) {
             }
     }
 }
-// notify
-    // for($x=0;$x<=1800;$x++){
-    // }
-    // for($x=0;$x<=3600;$x++){
-    // }
-    // for($x=0;$x<=86400;$x++){
-    // }
 echo "OK";
 function send_reply_message($url, $post_header, $post_body)
 {
