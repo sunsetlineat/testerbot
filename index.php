@@ -53,7 +53,7 @@ if ( sizeof($request_array['events']) > 0 ) {
                     $send_result = send_reply_message($API_URL.'/reply', $POST_HEADER, $post_body);
                 } elseif($text=='Bitkub Menu'){
                 
-                    $data = '{"to":"'. $event['source']['userId'] .'","messages":[{"type":"flex","altText":"This is a Flex Message","contents":{
+                   $data = '{"to":"'. $event['source']['userId'] .'","messages":[{"type":"flex","altText":"This is a Flex Message","contents":{
   "type": "bubble",
   "hero": {
     "type": "image",
@@ -65,46 +65,126 @@ if ( sizeof($request_array['events']) > 0 ) {
   "body": {
     "type": "box",
     "layout": "vertical",
+    "spacing": "md",
     "contents": [
       {
-        "type": "text",
-        "text": "FAQ Support",
-        "color": "#1DB446",
-        "weight": "bold",
-        "size": "xl"
-      },
-      {
-        "type": "text",
-        "text": "categories",
-        "size": "xs",
-        "color": "#aaaaaa",
-        "wrap": true
+        "type": "box",
+        "layout": "vertical",
+        "margin": "lg",
+        "spacing": "sm",
+        "contents": [
+          {
+            "type": "text",
+            "text": "FAQ Support",
+            "color": "#1DB446",
+            "weight": "bold",
+            "size": "xl"
+          },
+          {
+            "type": "text",
+            "text": "categories",
+            "size": "xs",
+            "color": "#aaaaaa",
+            "wrap": true
+          }
+        ]
       },
       {
         "type": "separator",
-        "margin": "xxl"
+        "margin": "lg"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "margin": "lg",
+        "spacing": "sm",
+        "contents": [
+          {
+            "type": "box",
+            "layout": "horizontal",
+            "spacing": "sm",
+            "contents": [
+              {
+                "type": "button",
+                "style": "primary",
+                "action": {
+                  "type": "postback",
+                  "label": "BTC",
+                  "displayText": "Bitcoin",
+                  "data": "BTC"
+                }
+              },
+              {
+                "type": "button",
+                "style": "primary",
+                "action": {
+                  "type": "postback",
+                  "label": "ETH",
+                  "displayText": "ETH",
+                  "data": "ETH"
+                }
+              },
+              {
+                "type": "button",
+                "style": "primary",
+                "action": {
+                  "type": "postback",
+                  "label": "WAN",
+                  "displayText": "WAN",
+                  "data": "WAN"
+                }
+              }
+            ]
+          },
+          {
+            "type": "box",
+            "layout": "horizontal",
+            "spacing": "sm",
+            "contents": [
+              {
+                "type": "button",
+                "style": "primary",
+                "action": {
+                  "type": "postback",
+                  "label": "ADA",
+                  "displayText": "ADA",
+                  "data": "ADA"
+                }
+              },
+              {
+                "type": "button",
+                "style": "primary",
+                "action": {
+                  "type": "postback",
+                  "label": "OMG",
+                  "displayText": "OMG",
+                  "data": "OMG"
+                }
+              },
+              {
+                "type": "button",
+                "style": "primary",
+                "action": {
+                  "type": "postback",
+                  "label": "XRP",
+                  "displayText": "XRP",
+                  "data": "XRP"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "separator",
+        "margin": "lg"
       }
     ]
   },
   "footer": {
     "type": "box",
     "layout": "vertical",
-    "spacing": "sm",
     "contents": [
-      {
-        "type": "button",
-        "style": "primary",
-        "height": "sm",
-        "action": {
-          "type": "uri",
-          "label": "CALL",
-          "uri": "https://linecorp.com"
-        }
-      },
-       {
-        "type": "separator",
-        "margin": "xxl"
-      },
       {
         "type": "button",
         "style": "link",
@@ -115,13 +195,8 @@ if ( sizeof($request_array['events']) > 0 ) {
           "label": "Bitkub support",
           "uri": "https://support.bitkub.com/hc/categories/360000031152-HOW-CAN-WE-HELP-YOU-"
         }
-      },
-      {
-        "type": "spacer",
-        "size": "sm"
       }
-    ],
-    "flex": 0
+    ]
   }
 }]}';
                      $post_body = $data;
