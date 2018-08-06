@@ -52,152 +52,151 @@ if ( sizeof($request_array['events']) > 0 ) {
                     $send_result = send_reply_message($API_URL.'/reply', $POST_HEADER, $post_body);
                 } elseif($text=='Bitkub Menu'){
                     $data = '{"to":"'. $event['source']['userId'] .'","messages":[{"type":"flex","altText":"This is a Flex Message","contents":{
-                    {
-  "type": "bubble",
-  "hero": {
-    "type": "image",
-    "url": "https://preview.ibb.co/hPYGQe/ce1d9357197fa496459f9f62f102ab51ecd4311c.jpg",
-    "size": "full",
-    "aspectRatio": "20:13",
-    "aspectMode": "cover"
-  },
-  "body": {
-    "type": "box",
-    "layout": "vertical",
-    "spacing": "md",
-    "contents": [
-      {
-        "type": "box",
-        "layout": "vertical",
-        "margin": "lg",
-        "spacing": "sm",
-        "contents": [
-          {
-            "type": "text",
-            "text": "FAQ Support",
-            "color": "#1DB446",
-            "weight": "bold",
-            "size": "xl"
-          },
-          {
-            "type": "text",
-            "text": "categories",
-            "size": "xs",
-            "color": "#aaaaaa",
-            "wrap": true
-          }
-        ]
-      },
-      {
-        "type": "separator",
-        "margin": "lg"
-      },
-      {
-        "type": "box",
-        "layout": "vertical",
-        "margin": "lg",
-        "spacing": "sm",
-        "contents": [
-          {
-            "type": "box",
-            "layout": "vertical",
-            "spacing": "sm",
-            "contents": [
-              {
-                "type": "button",
-                "style": "primary",
-                "action": {
-                  "type": "postback",
-                  "label": "ข้อมูลทั่วไป",
-                  "displayText": "ข้อมูลทั่วไป",
-                  "data": "ข้อมูลทั่วไป"
-                }
-              },
-              {
-                "type": "button",
-                "style": "primary",
-                "action": {
-                  "type": "postback",
-                  "label": "เริ่มต้นการใช้งาน",
-                  "displayText": "เริ่มต้นการใช้งาน",
-                  "data": "เริ่มต้นการใช้งาน"
-                }
-              },
-              {
-                "type": "button",
-                "style": "primary",
-                "action": {
-                  "type": "postback",
-                  "label": "ความปลอดภัย",
-                  "displayText": "ความปลอดภัย",
-                  "data": "ความปลอดภัย"
-                }
-              }
-            ]
-          },
-          {
-            "type": "box",
-            "layout": "vertical",
-            "spacing": "sm",
-            "contents": [
-              {
-                "type": "button",
-                "style": "primary",
-                "action": {
-                  "type": "postback",
-                  "label": "ความรู้เกี่ยวกับการเทรด",
-                  "displayText": "ความรู้เกี่ยวกับการเทรด",
-                  "data": "ความรู้เกี่ยวกับการเทรด"
-                }
-              },
-              {
-                "type": "button",
-                "style": "primary",
-                "action": {
-                  "type": "postback",
-                  "label": "จัดการบัญชี",
-                  "displayText": "จัดการบัญชี",
-                  "data": "จัดการบัญชี"
-                }
-              },
-              {
-                "type": "button",
-                "style": "primary",
-                "action": {
-                  "type": "postback",
-                  "label": "ช่วยเหลือ",
-                  "displayText": "ช่วยเหลือ",
-                  "data": "ช่วยเหลือ"
-                }
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "type": "separator",
-        "margin": "lg"
-      }
-    ]
-  },
-  "footer": {
-    "type": "box",
-    "layout": "vertical",
-    "contents": [
-      {
-        "type": "button",
-        "style": "link",
-        "color": "#1DB446",
-        "height": "sm",
-        "action": {
-          "type": "uri",
-          "label": "Bitkub support",
-          "uri": "https://support.bitkub.com/hc/categories/360000031152-HOW-CAN-WE-HELP-YOU-"
-        }
-      }
-    ]
-  }
-}}]}';
+                    "type": "bubble",
+                    "hero": {
+                        "type": "image",
+                        "url": "https://preview.ibb.co/hPYGQe/ce1d9357197fa496459f9f62f102ab51ecd4311c.jpg",
+                        "size": "full",
+                        "aspectRatio": "20:13",
+                        "aspectMode": "cover"
+                    },
+                    "body": {
+                        "type": "box",
+                        "layout": "vertical",
+                        "spacing": "md",
+                        "contents": [
+                        {
+                            "type": "box",
+                            "layout": "vertical",
+                            "margin": "lg",
+                            "spacing": "sm",
+                            "contents": [
+                            {
+                                "type": "text",
+                                "text": "FAQ Support",
+                                "color": "#1DB446",
+                                "weight": "bold",
+                                "size": "xl"
+                            },
+                            {
+                                "type": "text",
+                                "text": "categories",
+                                "size": "xs",
+                                "color": "#aaaaaa",
+                                "wrap": true
+                            }
+                            ]
+                        },
+                        {
+                            "type": "separator",
+                            "margin": "lg"
+                        },
+                        {
+                            "type": "box",
+                            "layout": "vertical",
+                            "margin": "lg",
+                            "spacing": "sm",
+                            "contents": [
+                            {
+                                "type": "box",
+                                "layout": "vertical",
+                                "spacing": "sm",
+                                "contents": [
+                                {
+                                    "type": "button",
+                                    "style": "primary",
+                                    "action": {
+                                    "type": "postback",
+                                    "label": "ข้อมูลทั่วไป",
+                                    "displayText": "ข้อมูลทั่วไป",
+                                    "data": "ข้อมูลทั่วไป"
+                                    }
+                                },
+                                {
+                                    "type": "button",
+                                    "style": "primary",
+                                    "action": {
+                                    "type": "postback",
+                                    "label": "เริ่มต้นการใช้งาน",
+                                    "displayText": "เริ่มต้นการใช้งาน",
+                                    "data": "เริ่มต้นการใช้งาน"
+                                    }
+                                },
+                                {
+                                    "type": "button",
+                                    "style": "primary",
+                                    "action": {
+                                    "type": "postback",
+                                    "label": "ความปลอดภัย",
+                                    "displayText": "ความปลอดภัย",
+                                    "data": "ความปลอดภัย"
+                                    }
+                                }
+                                ]
+                            },
+                            {
+                                "type": "box",
+                                "layout": "vertical",
+                                "spacing": "sm",
+                                "contents": [
+                                {
+                                    "type": "button",
+                                    "style": "primary",
+                                    "action": {
+                                    "type": "postback",
+                                    "label": "ความรู้เกี่ยวกับการเทรด",
+                                    "displayText": "ความรู้เกี่ยวกับการเทรด",
+                                    "data": "ความรู้เกี่ยวกับการเทรด"
+                                    }
+                                },
+                                {
+                                    "type": "button",
+                                    "style": "primary",
+                                    "action": {
+                                    "type": "postback",
+                                    "label": "จัดการบัญชี",
+                                    "displayText": "จัดการบัญชี",
+                                    "data": "จัดการบัญชี"
+                                    }
+                                },
+                                {
+                                    "type": "button",
+                                    "style": "primary",
+                                    "action": {
+                                    "type": "postback",
+                                    "label": "ช่วยเหลือ",
+                                    "displayText": "ช่วยเหลือ",
+                                    "data": "ช่วยเหลือ"
+                                    }
+                                }
+                                ]
+                            }
+                            ]
+                        },
+                        {
+                            "type": "separator",
+                            "margin": "lg"
+                        }
+                        ]
+                    },
+                    "footer": {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [
+                        {
+                            "type": "button",
+                            "style": "link",
+                            "color": "#1DB446",
+                            "height": "sm",
+                            "action": {
+                            "type": "uri",
+                            "label": "Bitkub support",
+                            "uri": "https://support.bitkub.com/hc/categories/360000031152-HOW-CAN-WE-HELP-YOU-"
+                            }
+                        }
+                        ]
+                    }
+                    }}]}';
                      $post_body = $data;
                      $send_result =send_reply_message($API_URL.'/push',$POST_HEADER,$post_body);
                 }
