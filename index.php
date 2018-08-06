@@ -67,7 +67,7 @@ if ( sizeof($request_array['events']) > 0 ) {
                     $send_result = send_reply_message($API_URL.'/push', $POST_HEADER, $post_body);
                 }
             } else { 
-              
+              //3333
             }
                 } elseif( $event['type'] == 'postback') {
                         $text = $event['postback']['data'];
