@@ -53,7 +53,81 @@ if ( sizeof($request_array['events']) > 0 ) {
                     $send_result = send_reply_message($API_URL.'/reply', $POST_HEADER, $post_body);
                 } elseif($text=='Bitkub Menu'){
                 
-                    $data = '{"to":"'. $event['source']['userId'] .'","messages":[{"type":"flex","altText":"This is a Flex Message","contents":{"type":"bubble","body":{"type":"box","layout":"vertical","contents":[{"type":"text","text":"Bitkub Online Co., Ltd","weight":"bold","size":"xl"},{"type":"box","layout":"vertical","margin":"lg","spacing":"sm","contents":[{"type":"box","layout":"baseline","spacing":"sm","contents":[{"type":"text","text":"Place","color":"#aaaaaa","size":"sm","flex":1},{"type":"text","text":"15cd, 15th floor, 29/1, Piya Place Building, Pathum Wan, Bangkok","wrap":true,"color":"#666666","size":"sm","flex":5}]},{"type":"box","layout":"baseline","spacing":"sm","contents":[{"type":"text","text":"E-mail","color":"#aaaaaa","size":"sm","flex":1},{"type":"text","text":"support@bitkub.com","wrap":true,"color":"#666666","size":"sm","flex":5}]}]}]},"footer":{"type":"box","layout":"vertical","spacing":"sm","contents":[{"type":"button","style":"link","height":"sm","action":{"type":"uri","label":"CALL","uri":"tel:0203229555"}},{"type":"spacer","size":"sm"}],"flex":0}}}]}';
+                    $data = '{"to":"'. $event['source']['userId'] .'","messages":[{
+  "type": "bubble",
+  "hero": {
+    "type": "image",
+    "url": "https://preview.ibb.co/hPYGQe/ce1d9357197fa496459f9f62f102ab51ecd4311c.jpg",
+    "size": "full",
+    "aspectRatio": "20:13",
+    "aspectMode": "cover",
+    "action": {
+      "type": "uri",
+      "uri": "http://linecorp.com/"
+    }
+  },
+  "body": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "text",
+        "text": "FAQ Support",
+        "color": "#1DB446",
+        "weight": "bold",
+        "size": "xl"
+      },
+      {
+        "type": "text",
+        "text": "categories",
+        "size": "xs",
+        "color": "#aaaaaa",
+        "wrap": true
+      },
+      {
+        "type": "separator",
+        "margin": "xxl"
+      }
+    ]
+  },
+  "footer": {
+    "type": "box",
+    "layout": "vertical",
+    "spacing": "sm",
+    "contents": [
+      {
+        "type": "button",
+        "style": "primary",
+        "height": "sm",
+        "action": {
+          "type": "uri",
+          "label": "CALL",
+          "uri": "https://linecorp.com"
+        }
+      },
+       {
+        "type": "separator",
+        "margin": "xxl"
+      },
+      {
+        "type": "button",
+        "style": "link",
+        "color": "#1DB446",
+        "height": "sm",
+        "action": {
+          "type": "uri",
+          "label": "Bitkub support",
+          "uri": "https://support.bitkub.com/hc/categories/360000031152-HOW-CAN-WE-HELP-YOU-"
+        }
+      },
+      {
+        "type": "spacer",
+        "size": "sm"
+      }
+    ],
+    "flex": 0
+  }
+}]}';
                      $post_body = $data;
                      $send_result =send_reply_message($API_URL.'/push',$POST_HEADER,$post_body);
                 }
