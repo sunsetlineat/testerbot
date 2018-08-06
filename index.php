@@ -52,10 +52,80 @@ if ( sizeof($request_array['events']) > 0 ) {
                     $post_body = json_encode($data, JSON_UNESCAPED_UNICODE);
                     $send_result = send_reply_message($API_URL.'/reply', $POST_HEADER, $post_body);
                 } elseif($text=='Bitkub Menu'){
-                    //bitkubMenu
-                     //$data = '{"to":"'. $event['source']['userId'] .'","messages":[{"type":"flex","altText":"This is a Flex Message","contents":{"type":"carousel","contents":[{"type":"bubble","hero":{"type":"image","url":"https://bitkubblockchain.com/wp-content/uploads/2018/01/line-menu-02.jpg","size":"full","aspectRatio":"20:13","aspectMode":"cover"},"body":{"type":"box","layout":"vertical","spacing":"md","contents":[{"type":"box","layout":"vertical","margin":"lg","spacing":"sm","contents":[{"type":"text","text":"CLICK TO CHECK CURRENT PRICE","weight":"bold","color":"#1DB446","size":"sm"}]},{"type":"separator","margin":"lg"},{"type":"box","layout":"vertical","margin":"lg","spacing":"sm","contents":[{"type":"box","layout":"horizontal","spacing":"sm","contents":[{"type":"button","style":"primary","action":{"type":"postback","label":"BTC","displayText":"Bitcoin","data":"BTC"}},{"type":"button","style":"primary","action":{"type":"postback","label":"ETH","displayText":"ETH","data":"ETH"}},{"type":"button","style":"primary","action":{"type":"postback","label":"WAN","displayText":"WAN","data":"WAN"}}]},{"type":"box","layout":"horizontal","spacing":"sm","contents":[{"type":"button","style":"primary","action":{"type":"postback","label":"ADA","displayText":"ADA","data":"ADA"}},{"type":"button","style":"primary","action":{"type":"postback","label":"OMG","displayText":"OMG","data":"OMG"}},{"type":"button","style":"primary","action":{"type":"postback","label":"XRP","displayText":"XRP","data":"XRP"}}]}]}]},"footer":{"type":"box","layout":"vertical","contents":[{"type":"button","style":"primary","action":{"type":"postback","label":"SET NOTIFICATION TIME","displayText":"SET NOTIFICATION TIME","data":"setNotiTime"}},{"type":"button","style":"secondary","margin":"sm","action":{"type":"uri","label":"CHECK OUT BITKUB MARKET","uri":"https://www.bitkub.com/market"}}]}},{"type":"bubble","body":{"type":"box","layout":"vertical","contents":[{"type":"text","text":"Bitkub Online Co., Ltd","weight":"bold","size":"xl"},{"type":"box","layout":"vertical","margin":"lg","spacing":"sm","contents":[{"type":"box","layout":"baseline","spacing":"sm","contents":[{"type":"text","text":"Place","color":"#aaaaaa","size":"sm","flex":1},{"type":"text","text":"15cd, 15th floor, 29/1, Piya Place Building, Pathum Wan, Bangkok","wrap":true,"color":"#666666","size":"sm","flex":5}]},{"type":"box","layout":"baseline","spacing":"sm","contents":[{"type":"text","text":"E-mail","color":"#aaaaaa","size":"sm","flex":1},{"type":"text","text":"support@bitkub.com","wrap":true,"color":"#666666","size":"sm","flex":5}]}]}]},"footer":{"type":"box","layout":"vertical","spacing":"sm","contents":[{"type":"button","style":"link","height":"sm","action":{"type":"uri","label":"CALL","uri":"tel:0203229555"}}],"flex":2}},{"type":"bubble","body":{"type":"box","layout":"vertical","contents":[{"type":"text","text":"SET NOTIFICATION TIME","weight":"bold","color":"#1DB446","size":"sm"}]},"footer":{"type":"box","layout":"vertical","spacing":"sm","contents":[{"type":"button","style":"primary","action":{"type":"postback","label":"EVERY 30 MINUTES","displayText":"EVERY 30 MINUTES","data":"EVERY 30 MINUTES"}},{"type":"button","style":"primary","action":{"type":"postback","label":"EVERY 1 HOUR","displayText":"EVERY 1 HOUR","data":"EVERY 1 HOUR"}},{"type":"button","style":"primary","action":{"type":"postback","label":"EVERY DAY","displayText":"EVERY DAY","data":"EVERY DAY"}},{"type":"spacer","size":"sm"}],"flex":0}}]}}]}';
-                     //$post_body = $data;
-                     //$send_result =send_reply_message($API_URL.'/push',$POST_HEADER,$post_body);
+                
+                     $data = '{"to":"'. $event['source']['userId'] .'","messages":[{
+                    "type": "bubble",
+                    "hero": {
+                        "type": "image",
+                        "url": "https://preview.ibb.co/hPYGQe/ce1d9357197fa496459f9f62f102ab51ecd4311c.jpg",
+                        "size": "full",
+                        "aspectRatio": "20:13",
+                        "aspectMode": "cover",
+                    },
+                    "body": {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [
+                        {
+                            "type": "text",
+                            "text": "FAQ Support",
+                            "color": "#1DB446",
+                            "weight": "bold",
+                            "size": "xl"
+                        },
+                        {
+                            "type": "text",
+                            "text": "categories",
+                            "size": "xs",
+                            "color": "#aaaaaa",
+                            "wrap": true
+                        },
+                        {
+                            "type": "separator",
+                            "margin": "xxl"
+                        }
+                        ]
+                    },
+                    "footer": {
+                        "type": "box",
+                        "layout": "vertical",
+                        "spacing": "sm",
+                        "contents": [
+                        {
+                            "type": "button",
+                            "style": "primary",
+                            "height": "sm",
+                            "action": {
+                            "type": "uri",
+                            "label": "CALL",
+                            "uri": "https://linecorp.com"
+                            }
+                        },
+                        {
+                            "type": "separator",
+                            "margin": "xxl"
+                        },
+                        {
+                            "type": "button",
+                            "style": "link",
+                            "color": "#1DB446",
+                            "height": "sm",
+                            "action": {
+                            "type": "uri",
+                            "label": "Bitkub support",
+                            "uri": "https://support.bitkub.com/hc/categories/360000031152-HOW-CAN-WE-HELP-YOU-"
+                            }
+                        },
+                        {
+                            "type": "spacer",
+                            "size": "sm"
+                        }
+                        ],
+                        "flex": 0
+                    }
+                    }]}';
+                     $post_body = $data;
+                     $send_result =send_reply_message($API_URL.'/push',$POST_HEADER,$post_body);
                 }
                 elseif($text == 'Contact us'){
                     $data = '{"to":"'. $event['source']['userId'] .'","messages":[{"type":"flex","altText":"This is a Flex Message","contents":{"type":"bubble","body":{"type":"box","layout":"vertical","contents":[{"type":"text","text":"Bitkub Online Co., Ltd","weight":"bold","size":"xl"},{"type":"box","layout":"vertical","margin":"lg","spacing":"sm","contents":[{"type":"box","layout":"baseline","spacing":"sm","contents":[{"type":"text","text":"Place","color":"#aaaaaa","size":"sm","flex":1},{"type":"text","text":"15cd, 15th floor, 29/1, Piya Place Building, Pathum Wan, Bangkok","wrap":true,"color":"#666666","size":"sm","flex":5}]},{"type":"box","layout":"baseline","spacing":"sm","contents":[{"type":"text","text":"E-mail","color":"#aaaaaa","size":"sm","flex":1},{"type":"text","text":"support@bitkub.com","wrap":true,"color":"#666666","size":"sm","flex":5}]}]}]},"footer":{"type":"box","layout":"vertical","spacing":"sm","contents":[{"type":"button","style":"link","height":"sm","action":{"type":"uri","label":"CALL","uri":"tel:0203229555"}},{"type":"spacer","size":"sm"}],"flex":0}}}]}';
