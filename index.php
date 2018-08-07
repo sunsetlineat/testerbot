@@ -6,32 +6,8 @@ $POST_HEADER = array('Content-Type: application/json', 'Authorization: Bearer ' 
 $request = file_get_contents('php://input');   // Get request content
 $request_array = json_decode($request, true);   // Decode JSON to Array
 
-//database
-//$host = 'ec2-23-21-238-28.compute-1.amazonaws.com'; 
-//$dbname = 'd4o7346gg51rmp';
-//$port = '5432'; 
-//$user = 'uokndosffcykht'; 
-//$pass = 'd0df32da93b1da05f04b071e6109274cbde9c42434ae8892af97bf429177fd8c'; 
-//$connection = new PDO("pgsql:host=$host;dbname=$dbname;user=$user;password=$pass;port=$port");
-
-
-// $params = array (
-//     'userID'    =>  $event['source']['userID'],
-//     'notiTime'  =>  $time('hh:mm:ss')
-// );
-
-// $statement = $connection->prepare('INSERT INTO settingTime(userID,notiTime) VALUES (:userID, :notiTime)');
-// $result = $statement->execute($params);
-
 if($connection){
     echo "Connected ";
-}
-$getData = json_decode(file_get_contents('https://api.coinmarketcap.com/v2/ticker/'), TRUE);
-if(!empty($getData['data'])){
-    $priceList =[];
-    foreach($getData['data'] as $val){
-    $priceList[$val['symbol']] = 'Current Price: ' . $val['quotes']['USD']['price'] . ' USD '; 
-    }
 }
 if ( sizeof($request_array['events']) > 0 ) {
     foreach ($request_array['events'] as $event) {
@@ -44,7 +20,6 @@ if ( sizeof($request_array['events']) > 0 ) {
                     $temp = $priceList[strtoupper($text)];
                     $data = [
                         'replyToken' => $reply_token,
-                        // 'messages' => [['type' => 'text', 'text' => $reply_message]]
                         'messages' => [[ 'type' => 'text', 'text' => $temp ]]
                     ];
                     $post_body = json_encode($data, JSON_UNESCAPED_UNICODE);
@@ -204,6 +179,13 @@ if ( sizeof($request_array['events']) > 0 ) {
                      $post_body = $data;
                      $send_result =send_reply_message($API_URL.'/push',$POST_HEADER,$post_body);
                 } elseif($text == 'Coin Price') {
+                    $getData = json_decode(file_get_contents('https://api.coinmarketcap.com/v2/ticker/'), TRUE);
+                    if(!empty($getData['data'])){
+                        $priceList =[];
+                        foreach($getData['data'] as $val){
+                        $priceList[$val['symbol']] = 'Current Price: ' . $val['quotes']['USD']['price'] . ' USD '; 
+                        }
+}
                     $data = '{"to":"'. $event['source']['userId'] .'","messages":[{"type":"flex","altText":"This is a Flex Message","contents":{"type":"bubble","hero":{"type":"image","url":"https://bitkubblockchain.com/wp-content/uploads/2018/01/line-menu-02.jpg","size":"full","aspectRatio":"20:13","aspectMode":"cover"},"body":{"type":"box","layout":"vertical","spacing":"md","contents":[{"type":"box","layout":"vertical","margin":"lg","spacing":"sm","contents":[{"type":"text","text":"CLICK TO CHECK CURRENT PRICE","weight":"bold","color":"#1DB446","size":"sm"}]},{"type":"separator","margin":"lg"},{"type":"box","layout":"vertical","margin":"lg","spacing":"sm","contents":[{"type":"box","layout":"horizontal","spacing":"sm","contents":[{"type":"button","style":"primary","action":{"type":"postback","label":"BTC","displayText":"Bitcoin","data":"BTC"}},{"type":"button","style":"primary","action":{"type":"postback","label":"ETH","displayText":"ETH","data":"ETH"}},{"type":"button","style":"primary","action":{"type":"postback","label":"WAN","displayText":"WAN","data":"WAN"}}]},{"type":"box","layout":"horizontal","spacing":"sm","contents":[{"type":"button","style":"primary","action":{"type":"postback","label":"ADA","displayText":"ADA","data":"ADA"}},{"type":"button","style":"primary","action":{"type":"postback","label":"OMG","displayText":"OMG","data":"OMG"}},{"type":"button","style":"primary","action":{"type":"postback","label":"XRP","displayText":"XRP","data":"XRP"}}]}]}]},"footer":{"type":"box","layout":"vertical","contents":[{"type":"button","style":"primary","action":{"type":"postback","label":"SET NOTIFICATION TIME","displayText":"SET NOTIFICATION TIME","data":"SET NOTIFICATION TIME"}},{"type":"button","style":"secondary","margin":"sm","action":{"type":"uri","label":"CHECK OUT BITKUB MARKET","uri":"https://www.bitkub.com/market"}}]}}}]}';
                     $post_body = $data;
                     $send_result = send_reply_message($API_URL.'/push', $POST_HEADER, $post_body);
@@ -211,7 +193,7 @@ if ( sizeof($request_array['events']) > 0 ) {
             } else { 
              
             }
-                } elseif( $event['type'] == 'postback') {
+                } elseif( $event['type'] == ' ') {
                         $text = $event['postback']['data'];
             
                     if(in_array(strtoupper($text), array_keys($priceList))) {
@@ -364,37 +346,17 @@ if ( sizeof($request_array['events']) > 0 ) {
                 }
 
                         elseif($text=='Who is Bitkub'){
-                                // $params = array (
-                                // 'user_id'    =>  $event['source']['userID'],
-                                // 'every_min'  =>  '30',
-                                // 'create_at' =>date('Y-m-d'),
-                                // );
-                                // $statement = $connection->prepare('INSERT INTO public.notification(user_id,every_min,create_at) VALUES (:user_id, :every_min, :create_at)');
-                                // $result = $statement->execute($params);
                            $data = [
                                 'replyToken' => $reply_token,
-                                'messages' => [[ 'type' => 'text', 'text' => 'Set notification time : every 30 minutes' ]]
+                                'messages' => [[ 'type' => 'text', 'text' => '' ]]
                             ];   
-                        }elseif($text=='EVERY 1 HOUR'){
-                                // $params = array (
-                                // 'user_id'    =>  $event['source']['userID'],
-                                // 'every_min'  =>  '60',
-                                // 'create_at' =>date('Y-m-d'),
-                                // );
-                                // $statement = $connection->prepare('INSERT INTO public.notification(user_id,every_min,create_at) VALUES (:user_id, :every_min, :create_at)');
-                                // $result = $statement->execute($params);
+                        }elseif($text==''){
                             $data = [
                                 'replyToken' => $reply_token,
                                 'messages' => [[ 'type' => 'text', 'text' => 'Set notification time : every 1 hour' ]]
                             ];
                         }elseif($text=='EVERY DAY'){
-                                // $params = array (
-                                // 'user_id'    =>  $event['source']['userID'],
-                                // 'every_min'  =>  '1440',
-                                // 'create_at' =>date('Y-m-d'),
-                                // );
-                                // $statement = $connection->prepare('INSERT INTO public.notification(user_id,every_min,create_at) VALUES (:user_id, :every_min, :create_at)');
-                                // $result = $statement->execute($params);
+
                             $data = [
                                 'replyToken' => $reply_token,
                                 'messages' => [[ 'type' => 'text', 'text' => 'Set notification time : every day' ]]
