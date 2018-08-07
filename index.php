@@ -193,7 +193,7 @@ if ( sizeof($request_array['events']) > 0 ) {
             } else { 
              
             }
-                } elseif( $event['type'] == ' ') {
+                } elseif( $event['type'] == 'postback') {
                         $text = $event['postback']['data'];
             
                     if(in_array(strtoupper($text), array_keys($priceList))) {
