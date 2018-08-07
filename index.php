@@ -9,13 +9,7 @@ $request_array = json_decode($request, true);   // Decode JSON to Array
 if($connection){
     echo "Connected ";
 }
-$getData = json_decode(file_get_contents('https://api.coinmarketcap.com/v2/ticker/'), TRUE);
-if(!empty($getData['data'])){
-    $priceList =[];
-    foreach($getData['data'] as $val){
-    $priceList[$val['symbol']] = 'Current Price: ' . $val['quotes']['USD']['price'] . ' USD '; 
-    }
-}
+
 if ( sizeof($request_array['events']) > 0 ) {
     foreach ($request_array['events'] as $event) {
         $reply_message = '';
@@ -194,6 +188,13 @@ if ( sizeof($request_array['events']) > 0 ) {
              
             }
                 } elseif( $event['type'] == 'postback') {
+                    $getData = json_decode(file_get_contents('https://api.coinmarketcap.com/v2/ticker/'), TRUE);
+                    if(!empty($getData['data'])){
+                        $priceList =[];
+                        foreach($getData['data'] as $val){
+                        $priceList[$val['symbol']] = 'Current Price: ' . $val['quotes']['USD']['price'] . ' USD '; 
+                        }
+                    }
                         $text = $event['postback']['data'];
             
                     if(in_array(strtoupper($text), array_keys($priceList))) {
