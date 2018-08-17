@@ -28,8 +28,8 @@
 // $strSQL = "SELECT * FROM 'res_notify' ";
 // $objQuery = mysql_query($strSQL) or die (mysql_error());
 
-   $url = $_REQUEST['SourceURL'];
-   echo "OK + ". $url;
+   echo $_REQUEST['SourceURL'];
+   echo "OK + ";
 
 
 
