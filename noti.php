@@ -1,8 +1,10 @@
 <?php
 //require_once("db_connection.php");
 
-echo $_POST['Title'];
-echo $_REQUEST['SourceURL'];
+$title =  $_POST['Title'];
+echo $title ;
+$req = $_REQUEST['SourceURL'];
+echo $req;
 
 
 
